@@ -8,4 +8,4 @@ requests-credssp
 packaging
 pypsrp
 pywinrm[credssp]
-pyyaml
+pyyaml==5.3.1
