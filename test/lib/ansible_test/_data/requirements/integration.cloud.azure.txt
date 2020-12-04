@@ -1,4 +1,4 @@
-packaging
+packaging==20.7
 requests[security]
 xmltodict
 azure-cli-core==2.0.35
