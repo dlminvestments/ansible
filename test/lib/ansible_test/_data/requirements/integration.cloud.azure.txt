@@ -1,5 +1,5 @@
 packaging
-requests[security]
+requests[security]==2.25.0
 xmltodict
 azure-cli-core==2.0.35
 azure-cli-nspkg==3.0.2
