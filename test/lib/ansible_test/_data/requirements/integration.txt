@@ -3,4 +3,4 @@ jinja2
 junit-xml
 ordereddict ; python_version < '2.7'
 packaging
-pyyaml
+pyyaml==5.3.1
