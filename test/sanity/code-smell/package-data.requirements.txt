@@ -1,6 +1,6 @@
 docutils
 jinja2
-packaging
+packaging==20.7
 pyyaml  # ansible-core requirement
 rstcheck
 setuptools > 39.2

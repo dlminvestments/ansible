@@ -1,1 +1,1 @@
-packaging
+packaging==20.7
