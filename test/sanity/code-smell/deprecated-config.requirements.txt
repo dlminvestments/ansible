@@ -1,2 +1,2 @@
 jinja2  # ansible-core requirement
-pyyaml
+pyyaml==5.3.1
