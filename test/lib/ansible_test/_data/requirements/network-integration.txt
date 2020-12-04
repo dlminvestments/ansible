@@ -3,5 +3,5 @@ jinja2
 junit-xml
 ordereddict ; python_version < '2.7' # ansible-test junit callback plugin requirement
 packaging
-paramiko
+paramiko==2.7.2
 pyyaml
