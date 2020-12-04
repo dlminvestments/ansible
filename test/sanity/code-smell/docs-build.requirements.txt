@@ -1,6 +1,6 @@
 jinja2==2.11.2
 pyyaml
 sphinx
-sphinx-notfound-page
+sphinx-notfound-page==0.5
 straight.plugin
 antsibull
