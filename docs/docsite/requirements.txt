@@ -1,7 +1,7 @@
 #pip packages required to build docsite
 jinja2
 PyYAML
-rstcheck
+rstcheck==3.3.1
 sphinx==2.1.2 
 sphinx-notfound-page
 Pygments >= 2.4.0
