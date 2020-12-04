@@ -1,3 +1,3 @@
 jinja2  # ansible-core requirement
-pyyaml  # needed for collection_detail.py
+pyyaml==5.3.1  # needed for collection_detail.py
 voluptuous
