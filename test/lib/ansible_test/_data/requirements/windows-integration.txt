@@ -5,7 +5,7 @@ ntlm-auth
 ordereddict ; python_version < '2.7' # ansible-test junit callback plugin requirement
 requests-ntlm
 requests-credssp
-packaging
+packaging==20.7
 pypsrp
 pywinrm[credssp]
 pyyaml
