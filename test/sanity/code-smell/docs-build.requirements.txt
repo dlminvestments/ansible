@@ -2,5 +2,5 @@ jinja2
 pyyaml
 sphinx
 sphinx-notfound-page
-straight.plugin
+straight.plugin==1.5.0
 antsibull
