@@ -1,4 +1,4 @@
-argparse ; python_version < '2.7'
+argparse==1.4.0; python_version < '2.7'
 
 # pip 7.1 added support for constraints, which are required by ansible-test to install most python requirements
 # see https://github.com/pypa/pip/blame/e648e00dc0226ade30ade99591b245b0c98e86c9/NEWS.rst#L1258
