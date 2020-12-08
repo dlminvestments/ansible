@@ -574,7 +574,7 @@ def get_xml_conf_arg(cfg, path, data="text"):
     :return: Returns the required type for the matched xml node or else None
     """
     match = cfg.xpath(path)
-    if len(match):
+    if match:
         if data == "tag":
             result = getattr(match[0], "tag")
         elif data == "attrib":

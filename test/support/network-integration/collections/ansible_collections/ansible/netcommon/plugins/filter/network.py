@@ -303,7 +303,7 @@ def _extract_param(template, root, attrs, value):
             # check if xpath ends with attribute.
             # If yes set attribute key/value dict to param value in case attribute matches
             # else if it is a normal xpath assign matched element text value.
-            if len(tags) and tags[-1].endswith("]"):
+            if tags and tags[-1].endswith("]"):
                 if fields:
                     if len(fields) > 1:
                         item_dict[param] = [field.attrib for field in fields]

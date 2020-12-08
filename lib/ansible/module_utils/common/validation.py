@@ -262,7 +262,7 @@ def check_required_if(requirements, module_parameters):
                 count = count_terms(check, module_parameters)
                 if count == 0:
                     missing['missing'].append(check)
-        if len(missing['missing']) and len(missing['missing']) >= max_missing_count:
+        if missing['missing'] and len(missing['missing']) >= max_missing_count:
             missing['parameter'] = key
             missing['value'] = val
             missing['requirements'] = requirements
