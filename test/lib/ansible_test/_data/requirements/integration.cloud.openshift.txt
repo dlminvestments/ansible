@@ -1,1 +1,1 @@
-openshift
+openshift==0.11.2
