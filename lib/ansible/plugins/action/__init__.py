@@ -211,7 +211,7 @@ class ActionBase(with_metaclass(ABCMeta, object)):
             raise AnsibleError("The module %s was not found in configured module paths" % (module_name))
 
         # insert shared code and arguments into the module
-        final_environment = dict()
+        final_environment = {}
         self._compute_environment_string(final_environment)
 
         become_kwargs = {}
@@ -267,7 +267,7 @@ class ActionBase(with_metaclass(ABCMeta, object)):
         Builds the environment string to be used when executing the remote task.
         '''
 
-        final_environment = dict()
+        final_environment = {}
         if self._task.environment is not None:
             environments = self._task.environment
             if not isinstance(environments, list):
@@ -946,7 +946,7 @@ class ActionBase(with_metaclass(ABCMeta, object)):
             tmpdir = self._connection._shell.tmpdir
 
         if task_vars is None:
-            task_vars = dict()
+            task_vars = {}
 
         # if a module name was not specified for this execution, use the action from the task
         if module_name is None:
@@ -1038,7 +1038,7 @@ class ActionBase(with_metaclass(ABCMeta, object)):
         if wrap_async and not self._connection.always_pipeline_modules:
             # configure, upload, and chmod the async_wrapper module
             (async_module_style, shebang, async_module_data, async_module_path) = self._configure_module(
-                module_name='ansible.legacy.async_wrapper', module_args=dict(), task_vars=task_vars)
+                module_name='ansible.legacy.async_wrapper', module_args={}, task_vars=task_vars)
             async_module_remote_filename = self._connection._shell.get_remote_filename(async_module_path)
             remote_async_module_path = self._connection._shell.join_path(tmpdir, async_module_remote_filename)
             self._transfer_data(remote_async_module_path, async_module_data)

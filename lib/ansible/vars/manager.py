@@ -126,12 +126,12 @@ class VariableManager:
         self._fact_cache = data.get('fact_cache', defaultdict(dict))
         self._nonpersistent_fact_cache = data.get('np_fact_cache', defaultdict(dict))
         self._vars_cache = data.get('vars_cache', defaultdict(dict))
-        self._extra_vars = data.get('extra_vars', dict())
+        self._extra_vars = data.get('extra_vars', {})
         self._host_vars_files = data.get('host_vars_files', defaultdict(dict))
         self._group_vars_files = data.get('group_vars_files', defaultdict(dict))
         self._omit_token = data.get('omit_token', '__omit_place_holder__%s' % sha1(os.urandom(64)).hexdigest())
         self._inventory = data.get('inventory', None)
-        self._options_vars = data.get('options_vars', dict())
+        self._options_vars = data.get('options_vars', {})
         self.safe_basedir = data.get('safe_basedir', False)
         self._loader = None
         self._hostvars = None
@@ -170,7 +170,7 @@ class VariableManager:
 
         display.debug("in VariableManager get_vars()")
 
-        all_vars = dict()
+        all_vars = {}
         magic_variables = self._get_magic_variables(
             play=play,
             host=host,
@@ -368,7 +368,7 @@ class VariableManager:
                             if include_delegate_to:
                                 raise AnsibleFileNotFound("vars file %s was not found" % vars_file_item)
                     except (UndefinedError, AnsibleUndefinedVariable):
-                        if host is not None and self._fact_cache.get(host.name, dict()).get('module_setup') and task is not None:
+                        if host is not None and self._fact_cache.get(host.name, {}).get('module_setup') and task is not None:
                             raise AnsibleUndefinedVariable("an undefined variable was found when attempting to template the vars_files item '%s'"
                                                            % vars_file_item, obj=vars_file_item)
                         else:
@@ -401,9 +401,9 @@ class VariableManager:
         # facts cache (set_fact/register), in that order
         if host:
             # include_vars non-persistent cache
-            all_vars = _combine_and_track(all_vars, self._vars_cache.get(host.get_name(), dict()), "include_vars")
+            all_vars = _combine_and_track(all_vars, self._vars_cache.get(host.get_name(), {}), "include_vars")
             # fact non-persistent cache
-            all_vars = _combine_and_track(all_vars, self._nonpersistent_fact_cache.get(host.name, dict()), "set_fact")
+            all_vars = _combine_and_track(all_vars, self._nonpersistent_fact_cache.get(host.name, {}), "set_fact")
 
         # next, we merge in role params and task include params
         if task:
@@ -584,7 +584,7 @@ class VariableManager:
             items = [None]
 
         # since host can change per loop, we keep dict per host name resolved
-        delegated_host_vars = dict()
+        delegated_host_vars = {}
         item_var = getattr(task.loop_control, 'loop_var', 'item')
         cache_items = False
         for item in items:
@@ -694,7 +694,7 @@ class VariableManager:
         Sets a value in the vars_cache for a host.
         '''
         if host not in self._vars_cache:
-            self._vars_cache[host] = dict()
+            self._vars_cache[host] = {}
         if varname in self._vars_cache[host] and isinstance(self._vars_cache[host][varname], MutableMapping) and isinstance(value, MutableMapping):
             self._vars_cache[host] = combine_vars(self._vars_cache[host], {varname: value})
         else:

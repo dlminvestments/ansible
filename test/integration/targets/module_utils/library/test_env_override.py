@@ -11,4 +11,4 @@ from ansible.module_utils.mork import data as mork_data
 
 results = {"json_utils": data, "mork": mork_data}
 
-AnsibleModule(argument_spec=dict()).exit_json(**results)
+AnsibleModule(argument_spec={}).exit_json(**results)

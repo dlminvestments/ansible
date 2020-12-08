@@ -70,7 +70,7 @@ def strip_internal_keys(dirty, exceptions=None):
     # All keys starting with _ansible_ are internal, so change the 'dirty' mapping and remove them.
 
     if exceptions is None:
-        exceptions = tuple()
+        exceptions = ()
 
     if isinstance(dirty, MutableSequence):
 

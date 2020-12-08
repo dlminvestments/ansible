@@ -127,7 +127,7 @@ def _parse_parameters(term):
     if len(first_split) <= 1:
         # Only a single argument given, therefore it's a path
         relpath = term
-        params = dict()
+        params = {}
     else:
         relpath = first_split[0]
         params = parse_kv(first_split[1])

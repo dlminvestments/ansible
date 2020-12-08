@@ -24,7 +24,7 @@ from ansible import constants  # intentionally trigger pylint ansible-bad-module
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict(),
+        argument_spec={},
     )
 
     module.exit_json()
