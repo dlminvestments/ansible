@@ -34,11 +34,13 @@ class OhaiFactCollector(BaseFactCollector):
         super(OhaiFactCollector, self).__init__(collectors=collectors,
                                                 namespace=namespace)
 
-    def find_ohai(self, module):
+    @staticmethod
+    def find_ohai(module):
         ohai_path = module.get_bin_path('ohai')
         return ohai_path
 
-    def run_ohai(self, module, ohai_path,):
+    @staticmethod
+    def run_ohai(module, ohai_path,):
         rc, out, err = module.run_command(ohai_path)
         return rc, out, err
 

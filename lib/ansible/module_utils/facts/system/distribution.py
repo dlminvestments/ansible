@@ -94,7 +94,8 @@ class DistributionFiles:
     def __init__(self, module):
         self.module = module
 
-    def _get_file_content(self, path):
+    @staticmethod
+    def _get_file_content(path):
         return get_file_content(path)
 
     def _get_dist_file_content(self, path, allow_empty=False):
@@ -149,7 +150,8 @@ class DistributionFiles:
         #          self.facts['distribution_release'],
         #          )})
 
-    def _guess_distribution(self):
+    @staticmethod
+    def _guess_distribution():
         # try to find out which linux distribution this is
         dist = (get_distribution(), get_distribution_version(), get_distribution_codename())
         distribution_guess = {
@@ -206,7 +208,8 @@ class DistributionFiles:
         return dist_file_facts
 
     # TODO: FIXME: split distro file parsing into its own module or class
-    def parse_distribution_file_Slackware(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Slackware(name, data, path, collected_facts):
         slackware_facts = {}
         if 'Slackware' not in data:
             return False, slackware_facts  # TODO: remove
@@ -216,7 +219,8 @@ class DistributionFiles:
             slackware_facts['distribution_version'] = version[0]
         return True, slackware_facts
 
-    def parse_distribution_file_Amazon(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Amazon(name, data, path, collected_facts):
         amazon_facts = {}
         if 'Amazon' not in data:
             return False, amazon_facts
@@ -226,7 +230,8 @@ class DistributionFiles:
         amazon_facts['distribution_version'] = version
         return True, amazon_facts
 
-    def parse_distribution_file_OpenWrt(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_OpenWrt(name, data, path, collected_facts):
         openwrt_facts = {}
         if 'OpenWrt' not in data:
             return False, openwrt_facts  # TODO: remove
@@ -239,13 +244,15 @@ class DistributionFiles:
             openwrt_facts['distribution_release'] = release.groups()[0]
         return True, openwrt_facts
 
-    def parse_distribution_file_Alpine(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Alpine(name, data, path, collected_facts):
         alpine_facts = {}
         alpine_facts['distribution'] = 'Alpine'
         alpine_facts['distribution_version'] = data
         return True, alpine_facts
 
-    def parse_distribution_file_SUSE(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_SUSE(name, data, path, collected_facts):
         suse_facts = {}
         if 'suse' not in data.lower():
             return False, suse_facts  # TODO: remove if tested without this
@@ -361,7 +368,8 @@ class DistributionFiles:
 
         return True, debian_facts
 
-    def parse_distribution_file_Mandriva(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Mandriva(name, data, path, collected_facts):
         mandriva_facts = {}
         if 'Mandriva' in data:
             mandriva_facts['distribution'] = 'Mandriva'
@@ -377,7 +385,8 @@ class DistributionFiles:
 
         return True, mandriva_facts
 
-    def parse_distribution_file_NA(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_NA(name, data, path, collected_facts):
         na_facts = {}
         for line in data.splitlines():
             distribution = re.search("^NAME=(.*)", line)
@@ -388,7 +397,8 @@ class DistributionFiles:
                 na_facts['distribution_version'] = version.group(1).strip('"')
         return True, na_facts
 
-    def parse_distribution_file_Coreos(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Coreos(name, data, path, collected_facts):
         coreos_facts = {}
         # FIXME: pass in ro copy of facts for this kind of thing
         distro = get_distribution()
@@ -406,7 +416,8 @@ class DistributionFiles:
 
         return True, coreos_facts
 
-    def parse_distribution_file_Flatcar(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_Flatcar(name, data, path, collected_facts):
         flatcar_facts = {}
         distro = get_distribution()
 
@@ -421,7 +432,8 @@ class DistributionFiles:
 
         return True, flatcar_facts
 
-    def parse_distribution_file_ClearLinux(self, name, data, path, collected_facts):
+    @staticmethod
+    def parse_distribution_file_ClearLinux(name, data, path, collected_facts):
         clear_facts = {}
         if "clearlinux" not in name.lower():
             return False, clear_facts
@@ -583,7 +595,8 @@ class Distribution(object):
             darwin_facts['distribution_version'] = data
         return darwin_facts
 
-    def get_distribution_FreeBSD(self):
+    @staticmethod
+    def get_distribution_FreeBSD():
         freebsd_facts = {}
         freebsd_facts['distribution_release'] = platform.release()
         data = re.search(r'(\d+)\.(\d+)-(RELEASE|STABLE|CURRENT).*', freebsd_facts['distribution_release'])
@@ -630,7 +643,8 @@ class Distribution(object):
             netbsd_facts['distribution_version'] = platform_release
         return netbsd_facts
 
-    def get_distribution_SMGL(self):
+    @staticmethod
+    def get_distribution_SMGL():
         smgl_facts = {}
         smgl_facts['distribution'] = 'Source Mage GNU/Linux'
         return smgl_facts

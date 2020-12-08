@@ -63,7 +63,8 @@ class GenericBsdIfconfigNetwork(Network):
 
         return network_facts
 
-    def detect_type_media(self, interfaces):
+    @staticmethod
+    def detect_type_media(interfaces):
         for iface in interfaces:
             if 'media' in interfaces[iface]:
                 if 'ether' in interfaces[iface]['media'].lower():
@@ -177,7 +178,8 @@ class GenericBsdIfconfigNetwork(Network):
         # FreeBSD has options like this...
         current_if['options'] = self.get_options(words[1])
 
-    def parse_ether_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_ether_line(words, current_if, ips):
         current_if['macaddress'] = words[1]
         current_if['type'] = 'ether'
 
@@ -191,13 +193,16 @@ class GenericBsdIfconfigNetwork(Network):
         if len(words) > 4:
             current_if['media_options'] = self.get_options(words[4])
 
-    def parse_status_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_status_line(words, current_if, ips):
         current_if['status'] = words[1]
 
-    def parse_lladdr_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_lladdr_line(words, current_if, ips):
         current_if['lladdr'] = words[1]
 
-    def parse_inet_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_inet_line(words, current_if, ips):
         # netbsd show aliases like this
         #  lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 33184
         #         inet 127.0.0.1 netmask 0xff000000
@@ -245,7 +250,8 @@ class GenericBsdIfconfigNetwork(Network):
             ips['all_ipv4_addresses'].append(address['address'])
         current_if['ipv4'].append(address)
 
-    def parse_inet6_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_inet6_line(words, current_if, ips):
         address = {'address': words[1]}
 
         # using cidr style addresses, ala NetBSD ifconfig post 7.1
@@ -268,7 +274,8 @@ class GenericBsdIfconfigNetwork(Network):
             ips['all_ipv6_addresses'].append(address['address'])
         current_if['ipv6'].append(address)
 
-    def parse_tunnel_line(self, words, current_if, ips):
+    @staticmethod
+    def parse_tunnel_line(words, current_if, ips):
         current_if['type'] = 'tunnel'
 
     def parse_unknown_line(self, words, current_if, ips):
@@ -278,7 +285,8 @@ class GenericBsdIfconfigNetwork(Network):
 
     # TODO: these are module scope static function candidates
     #       (most of the class is really...)
-    def get_options(self, option_string):
+    @staticmethod
+    def get_options(option_string):
         start = option_string.find('<') + 1
         end = option_string.rfind('>')
         if (start > 0) and (end > 0) and (end > start + 1):
@@ -287,7 +295,8 @@ class GenericBsdIfconfigNetwork(Network):
         else:
             return []
 
-    def merge_default_interface(self, defaults, interfaces, ip_type):
+    @staticmethod
+    def merge_default_interface(defaults, interfaces, ip_type):
         if 'interface' not in defaults:
             return
         if not defaults['interface'] in interfaces:

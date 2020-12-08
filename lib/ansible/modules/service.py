@@ -1352,7 +1352,8 @@ class SunOSService(Service):
         else:
             self.svcadm_sync = ''
 
-    def svcadm_supports_sync(self):
+    @staticmethod
+    def svcadm_supports_sync():
         # Support for synchronous restart/refresh is only supported on
         # Oracle Solaris >= 11.2
         for line in open('/etc/release', 'r').readlines():

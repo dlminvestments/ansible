@@ -706,7 +706,8 @@ class ModuleUtilLocatorBase:
             return True
         return False
 
-    def _get_module_utils_remainder_parts(self, name_parts):
+    @staticmethod
+    def _get_module_utils_remainder_parts(name_parts):
         # subclasses should override to return the name parts after module_utils
         return []
 
@@ -714,7 +715,8 @@ class ModuleUtilLocatorBase:
         # return the remainder parts as a package string
         return '.'.join(self._get_module_utils_remainder_parts(name_parts))
 
-    def _find_module(self, name_parts):
+    @staticmethod
+    def _find_module(name_parts):
         return False
 
     def _locate(self, redirect_first=True):
@@ -743,7 +745,8 @@ class ModuleUtilLocatorBase:
         self.output_path = os.path.join(*path_parts) + '.py'
         self.fq_name_parts = candidate_name_parts
 
-    def _generate_redirect_shim_source(self, fq_source_module, fq_target_module):
+    @staticmethod
+    def _generate_redirect_shim_source(fq_source_module, fq_target_module):
         return """
 import sys
 import {1} as mod

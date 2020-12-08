@@ -228,7 +228,8 @@ class PlayIterator:
 
         return self._host_states[host.name].copy()
 
-    def cache_block_tasks(self, block):
+    @staticmethod
+    def cache_block_tasks(block):
         # now a noop, we've changed the way we do caching and finding of
         # original task entries, but just in case any 3rd party strategies
         # are using this we're leaving it here for now
@@ -525,7 +526,8 @@ class PlayIterator:
             return self.is_any_block_rescuing(state.tasks_child_state)
         return False
 
-    def get_original_task(self, host, task):
+    @staticmethod
+    def get_original_task(host, task):
         # now a noop because we've changed the way we do caching
         return (None, None)
 

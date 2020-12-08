@@ -64,7 +64,8 @@ class AdHocCLI(CLI):
 
         return options
 
-    def _play_ds(self, pattern, async_val, poll):
+    @staticmethod
+    def _play_ds(pattern, async_val, poll):
         check_raw = context.CLIARGS['module_name'] in C.MODULE_REQUIRE_ARGS
 
         mytask = {'action': {'module': context.CLIARGS['module_name'], 'args': parse_kv(context.CLIARGS['module_args'], check_raw=check_raw)},

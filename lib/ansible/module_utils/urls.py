@@ -1004,7 +1004,8 @@ class SSLValidationHandler(urllib_request.BaseHandler):
 
         return (tmp_path, cadata, paths_checked)
 
-    def validate_proxy_response(self, response, valid_codes=None):
+    @staticmethod
+    def validate_proxy_response(response, valid_codes=None):
         '''
         make sure we get back a valid code from the proxy
         '''
@@ -1017,7 +1018,8 @@ class SSLValidationHandler(urllib_request.BaseHandler):
         except Exception:
             raise ProxyError('Connection to proxy failed')
 
-    def detect_no_proxy(self, url):
+    @staticmethod
+    def detect_no_proxy(url):
         '''
         Detect if the 'no_proxy' environment variable is set and honor those locations.
         '''
@@ -1229,7 +1231,8 @@ class Request:
         else:
             self.cookies = cookiejar.CookieJar()
 
-    def _fallback(self, value, fallback):
+    @staticmethod
+    def _fallback(value, fallback):
         if value is None:
             return fallback
         return value

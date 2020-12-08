@@ -368,7 +368,8 @@ class CollectionRequirement:
         else:
             display.vvv("Successfully verified that checksums for '%s:%s' match the remote collection" % (to_text(self), self.latest_version))
 
-    def _verify_file_hash(self, b_path, filename, expected_hash, error_queue):
+    @staticmethod
+    def _verify_file_hash(b_path, filename, expected_hash, error_queue):
         b_file_path = to_bytes(os.path.join(to_text(b_path), filename), errors='surrogate_or_strict')
 
         if not os.path.isfile(b_file_path):

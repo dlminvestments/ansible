@@ -269,7 +269,8 @@ class ZipArchive(object):
         self._files_in_archive = []
         self._infodict = {}
 
-    def _permstr_to_octal(self, modestr, umask):
+    @staticmethod
+    def _permstr_to_octal(modestr, umask):
         ''' Convert a Unix permission string (rw-r--r--) into a mode (0644) '''
         revstr = modestr[::-1]
         mode = 0

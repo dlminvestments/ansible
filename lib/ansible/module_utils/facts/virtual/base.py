@@ -45,7 +45,8 @@ class Virtual:
 
         return virtual_facts
 
-    def get_virtual_facts(self):
+    @staticmethod
+    def get_virtual_facts():
         virtual_facts = {
             'virtualization_type': '',
             'virtualization_role': '',

@@ -533,7 +533,8 @@ class YumModule(YumDnf):
 
         return self._yum_base
 
-    def po_to_envra(self, po):
+    @staticmethod
+    def po_to_envra(po):
         if hasattr(po, 'ui_envra'):
             return po.ui_envra
 
@@ -750,7 +751,8 @@ class YumModule(YumDnf):
 
         return set()
 
-    def transaction_exists(self, pkglist):
+    @staticmethod
+    def transaction_exists(pkglist):
         """
         checks the package list to see if any packages are
         involved in an incomplete transaction
@@ -787,7 +789,8 @@ class YumModule(YumDnf):
                         break
         return conflicts
 
-    def local_envra(self, path):
+    @staticmethod
+    def local_envra(path):
         """return envra of a local rpm passed in"""
 
         ts = rpm.TransactionSet()
@@ -849,7 +852,8 @@ class YumModule(YumDnf):
             if old_proxy_env[1]:
                 os.environ["https_proxy"] = old_proxy_env[1]
 
-    def pkg_to_dict(self, pkgstr):
+    @staticmethod
+    def pkg_to_dict(pkgstr):
         if pkgstr.strip() and pkgstr.count('|') == 5:
             n, e, v, r, a, repo = pkgstr.split('|')
         else:

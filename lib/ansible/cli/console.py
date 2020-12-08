@@ -271,7 +271,8 @@ class ConsoleCLI(CLI, cmd.Cmd):
 
     do_serial = do_forks
 
-    def do_verbosity(self, arg):
+    @staticmethod
+    def do_verbosity(arg):
         """Set verbosity level"""
         if not arg:
             display.display('Usage: verbosity <number>')
@@ -375,7 +376,8 @@ class ConsoleCLI(CLI, cmd.Cmd):
         else:
             display.display('Usage: timeout <seconds>')
 
-    def do_exit(self, args):
+    @staticmethod
+    def do_exit(args):
         """Exits from the console"""
         sys.stdout.write('\n')
         return -1
@@ -416,7 +418,8 @@ class ConsoleCLI(CLI, cmd.Cmd):
 
             return [s[offs:] + '=' for s in completions if s.startswith(mline)]
 
-    def module_args(self, module_name):
+    @staticmethod
+    def module_args(module_name):
         in_path = module_loader.find_plugin(module_name)
         oc, a, _, _ = plugin_docs.get_docstring(in_path, fragment_loader, is_module=True)
         return list(oc['options'].keys())

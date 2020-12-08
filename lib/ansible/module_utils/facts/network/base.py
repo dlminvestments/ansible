@@ -36,7 +36,8 @@ class Network:
         self.module = module
 
     # TODO: more or less abstract/NotImplemented
-    def populate(self, collected_facts=None):
+    @staticmethod
+    def populate(collected_facts=None):
         return {}
 
 

@@ -102,7 +102,8 @@ class WorkerProcess(multiprocessing_context.Process):
             if self._new_stdin != os.devnull:
                 self._new_stdin.close()
 
-    def _hard_exit(self, e):
+    @staticmethod
+    def _hard_exit(e):
         '''
         There is no safe exception to return to higher level code that does not
         risk an innocent try/except finding itself executing in the wrong

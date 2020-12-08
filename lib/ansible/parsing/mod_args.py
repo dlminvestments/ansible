@@ -122,7 +122,8 @@ class ModuleArgsParser:
 
         self.internal_redirect_list = []
 
-    def _split_module_string(self, module_string):
+    @staticmethod
+    def _split_module_string(module_string):
         '''
         when module names are expressed like:
         action: copy src=a dest=b

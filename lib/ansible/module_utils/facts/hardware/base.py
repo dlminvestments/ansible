@@ -39,7 +39,8 @@ class Hardware:
     def __init__(self, module, load_on_init=False):
         self.module = module
 
-    def populate(self, collected_facts=None):
+    @staticmethod
+    def populate(collected_facts=None):
         return {}
 
 

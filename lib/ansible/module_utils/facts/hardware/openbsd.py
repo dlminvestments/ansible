@@ -64,7 +64,8 @@ class OpenBSDHardware(Hardware):
         return hardware_facts
 
     @timeout.timeout()
-    def get_mount_facts(self):
+    @staticmethod
+    def get_mount_facts():
         mount_facts = {}
 
         mount_facts['mounts'] = []

@@ -53,7 +53,8 @@ class AnsibleFactCollector(collector.BaseFactCollector):
 
         self.filter_spec = filter_spec
 
-    def _filter(self, facts_dict, filter_spec):
+    @staticmethod
+    def _filter(facts_dict, filter_spec):
         # assume filter_spec='' or filter_spec=[] is equivalent to filter_spec='*'
         if not filter_spec or filter_spec == '*':
             return facts_dict
