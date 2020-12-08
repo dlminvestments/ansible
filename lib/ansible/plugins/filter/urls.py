@@ -58,7 +58,8 @@ def do_urlencode(value):
 class FilterModule(object):
     ''' Ansible core jinja2 filters '''
 
-    def filters(self):
+    @staticmethod
+    def filters():
         filters = {
             'urldecode': do_urldecode,
         }

@@ -128,7 +128,8 @@ class ActionBase(with_metaclass(ABCMeta, object)):
         if force or not self._task.async_val:
             self._remove_tmp_path(self._connection._shell.tmpdir)
 
-    def get_plugin_option(self, plugin, option, default=None):
+    @staticmethod
+    def get_plugin_option(plugin, option, default=None):
         """Helper to get an option from a plugin without having to use
         the try/except dance everywhere to set a default
         """
@@ -852,7 +853,8 @@ class ActionBase(with_metaclass(ABCMeta, object)):
 
         return expanded
 
-    def _strip_success_message(self, data):
+    @staticmethod
+    def _strip_success_message(data):
         '''
         Removes the BECOME-SUCCESS message from the data.
         '''

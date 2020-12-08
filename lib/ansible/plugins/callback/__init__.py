@@ -162,7 +162,8 @@ class CallbackBase(AnsiblePlugin):
 
             self._display.display(msg, color=C.COLOR_ERROR, stderr=use_stderr)
 
-    def _serialize_diff(self, diff):
+    @staticmethod
+    def _serialize_diff(diff):
         return json.dumps(diff, sort_keys=True, indent=4, separators=(u',', u': ')) + u'\n'
 
     def _get_diff(self, difflist):
@@ -232,7 +233,8 @@ class CallbackBase(AnsiblePlugin):
                 ret.append(diff['prepared'])
         return u''.join(ret)
 
-    def _get_item_label(self, result):
+    @staticmethod
+    def _get_item_label(result):
         ''' retrieves the value to be displayed as a label for an item entry from a result object'''
         if result.get('_ansible_no_log', False):
             item = "(censored due to no_log)"
@@ -240,7 +242,8 @@ class CallbackBase(AnsiblePlugin):
             item = result.get('_ansible_item_label', result.get('item'))
         return item
 
-    def _process_items(self, result):
+    @staticmethod
+    def _process_items(result):
         # just remove them as now they get handled by individual callbacks
         del result._result['results']
 

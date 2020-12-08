@@ -249,7 +249,8 @@ class BaseInventoryPlugin(AnsiblePlugin):
             if k in data:
                 self._options[k] = data.pop(k)
 
-    def _expand_hostpattern(self, hostpattern):
+    @staticmethod
+    def _expand_hostpattern(hostpattern):
         '''
         Takes a single host pattern and returns a list of hostnames and an
         optional port number that applies to all of them.

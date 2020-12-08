@@ -144,7 +144,8 @@ class _AnsibleCollectionFinder:
         for pkg in ['ansible_collections', 'ansible_collections.ansible']:
             self._reload_hack(pkg)
 
-    def _reload_hack(self, fullname):
+    @staticmethod
+    def _reload_hack(fullname):
         m = sys.modules.get(fullname)
         if not m:
             return
@@ -204,7 +205,8 @@ class _AnsiblePathHookFinder:
             self._file_finder = None
 
     # class init is fun- this method has a self arg that won't get used
-    def _get_filefinder_path_hook(self=None):
+    @staticmethod
+    def _get_filefinder_path_hook():
         _file_finder_hook = None
         if PY3:
             # try to find the FileFinder hook to call for fallback path-based imports in Py3
@@ -291,12 +293,14 @@ class _AnsibleCollectionPkgLoaderBase:
         return [os.path.join(p, self._package_to_load) for p in path_list]
 
     # allow subclasses to customize finding paths
-    def _get_subpackage_search_paths(self, candidate_paths):
+    @staticmethod
+    def _get_subpackage_search_paths(candidate_paths):
         # filter candidate paths for existence (NB: silently ignoring package init code and same-named modules)
         return [p for p in candidate_paths if os.path.isdir(to_bytes(p))]
 
     # allow subclasses to customize state validation/manipulation before we return the loader instance
-    def _validate_final(self):
+    @staticmethod
+    def _validate_final():
         return
 
     @staticmethod
@@ -385,7 +389,8 @@ class _AnsibleCollectionPkgLoaderBase:
         self._decoded_source = self.get_data(self._source_code_path)
         return self._decoded_source
 
-    def get_data(self, path):
+    @staticmethod
+    def get_data(path):
         if not path:
             raise ValueError('a path must be specified')
 
@@ -411,7 +416,8 @@ class _AnsibleCollectionPkgLoaderBase:
 
         return None
 
-    def _synthetic_filename(self, fullname):
+    @staticmethod
+    def _synthetic_filename(fullname):
         return '<ansible_synthetic_collection_package>'
 
     def get_filename(self, fullname):
@@ -532,7 +538,8 @@ class _AnsibleCollectionPkgLoader(_AnsibleCollectionPkgLoaderBase):
 
         return module
 
-    def _canonicalize_meta(self, meta_dict):
+    @staticmethod
+    def _canonicalize_meta(meta_dict):
         # TODO: rewrite import keys and all redirect targets that start with .. (current namespace) and . (current collection)
         # OR we could do it all on the fly?
         # if not meta_dict:

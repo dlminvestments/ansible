@@ -431,7 +431,8 @@ class CliconfBase(AnsiblePlugin):
         """
         pass
 
-    def check_edit_config_capability(self, operations, candidate=None, commit=True, replace=None, comment=None):
+    @staticmethod
+    def check_edit_config_capability(operations, candidate=None, commit=True, replace=None, comment=None):
 
         if not candidate and not replace:
             raise ValueError("must provide a candidate or replace to load configuration")

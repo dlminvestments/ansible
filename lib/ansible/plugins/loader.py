@@ -274,7 +274,8 @@ class PluginLoader:
             PLUGIN_PATH_CACHE=PLUGIN_PATH_CACHE[self.class_name],
         )
 
-    def format_paths(self, paths):
+    @staticmethod
+    def format_paths(paths):
         ''' Returns a string suitable for printing of the search path '''
 
         # Uses a list to get the order right
@@ -287,7 +288,8 @@ class PluginLoader:
     def print_paths(self):
         return self.format_paths(self._get_paths(subdirs=False))
 
-    def _all_directories(self, dir):
+    @staticmethod
+    def _all_directories(dir):
         results = []
         results.append(dir)
         for root, subdirs, files in os.walk(dir, followlinks=True):
@@ -401,7 +403,8 @@ class PluginLoader:
                 self._clear_caches()
                 display.debug('Added %s to loader search path' % (directory))
 
-    def _query_collection_routing_meta(self, acr, plugin_type, extension=None):
+    @staticmethod
+    def _query_collection_routing_meta(acr, plugin_type, extension=None):
         collection_pkg = import_module(acr.n_python_collection_package_name)
         if not collection_pkg:
             return None
@@ -768,7 +771,8 @@ class PluginLoader:
                     module = imp.load_source(to_native(full_name), to_native(path), module_file)
         return module
 
-    def _update_object(self, obj, name, path, redirected_names=None):
+    @staticmethod
+    def _update_object(obj, name, path, redirected_names=None):
 
         # set extra info on the module, in case we want it later
         setattr(obj, '_original_path', path)

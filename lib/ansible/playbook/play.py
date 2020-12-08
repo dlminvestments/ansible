@@ -205,7 +205,8 @@ class Play(Base, Taggable, CollectionSearch):
 
         return self.roles
 
-    def _load_vars_prompt(self, attr, ds):
+    @staticmethod
+    def _load_vars_prompt(attr, ds):
         new_ds = preprocess_vars(ds)
         vars_prompts = []
         if new_ds is not None:

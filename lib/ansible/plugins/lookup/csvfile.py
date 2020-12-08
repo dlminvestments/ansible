@@ -118,7 +118,8 @@ class CSVReader:
 
 class LookupModule(LookupBase):
 
-    def read_csv(self, filename, key, delimiter, encoding='utf-8', dflt=None, col=1):
+    @staticmethod
+    def read_csv(filename, key, delimiter, encoding='utf-8', dflt=None, col=1):
 
         try:
             f = open(filename, 'rb')

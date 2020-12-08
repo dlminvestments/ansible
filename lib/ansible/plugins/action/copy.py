@@ -385,7 +385,8 @@ class ActionModule(ActionBase):
         result.update(module_return)
         return result
 
-    def _create_content_tempfile(self, content):
+    @staticmethod
+    def _create_content_tempfile(content):
         ''' Create a tempfile containing defined content '''
         fd, content_tempfile = tempfile.mkstemp(dir=C.DEFAULT_LOCAL_TMP)
         f = os.fdopen(fd, 'wb')
@@ -399,7 +400,8 @@ class ActionModule(ActionBase):
             f.close()
         return content_tempfile
 
-    def _remove_tempfile_if_content_defined(self, content, content_tempfile):
+    @staticmethod
+    def _remove_tempfile_if_content_defined(content, content_tempfile):
         if content is not None:
             os.remove(content_tempfile)
 

@@ -47,7 +47,8 @@ def contains(seq, value):
 class TestModule:
     ''' Ansible math jinja2 tests '''
 
-    def tests(self):
+    @staticmethod
+    def tests():
         return {
             # set theory
             'issubset': issubset,

@@ -292,7 +292,8 @@ class ActionModule(ActionBase):
         result['user_input'] = to_text(result['user_input'], errors='surrogate_or_strict')
         return result
 
-    def _c_or_a(self, stdin):
+    @staticmethod
+    def _c_or_a(stdin):
         while True:
             key_pressed = stdin.read(1)
             if key_pressed.lower() == b'a':

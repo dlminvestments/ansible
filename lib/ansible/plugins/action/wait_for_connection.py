@@ -42,7 +42,8 @@ class ActionModule(ActionBase):
     DEFAULT_SLEEP = 1
     DEFAULT_TIMEOUT = 600
 
-    def do_until_success_or_timeout(self, what, timeout, connect_timeout, what_desc, sleep=1):
+    @staticmethod
+    def do_until_success_or_timeout(what, timeout, connect_timeout, what_desc, sleep=1):
         max_end_time = datetime.utcnow() + timedelta(seconds=timeout)
 
         e = None

@@ -339,7 +339,8 @@ class NetconfBase(AnsiblePlugin):
         """
         pass
 
-    def get_device_operations(self, server_capabilities):
+    @staticmethod
+    def get_device_operations(server_capabilities):
         """
         Retrieve remote host capability from Netconf server hello message.
         :param server_capabilities: Server capabilities received during Netconf session initialization

@@ -8,7 +8,8 @@ def testfilter(data):
 
 class FilterModule(object):
 
-    def filters(self):
+    @staticmethod
+    def filters():
         return {
             'testfilter': testfilter
         }
