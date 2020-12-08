@@ -153,7 +153,7 @@ class AnsibleError(Exception):
                     elif ":{{" in stripped_line and "}}" in stripped_line:
                         error_message += YAML_COMMON_DICT_ERROR
                     # check for common unquoted colon mistakes
-                    elif (len(target_line) and
+                    elif (target_line and
                             len(target_line) > 1 and
                             len(target_line) > col_number and
                             target_line[col_number] == ":" and

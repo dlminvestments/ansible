@@ -75,7 +75,7 @@ def main():  # type: () -> None
     actual_matrix = dict((job.get('jobNumber'), dict(tuple(line.split('=', 1)) for line in job.get('env', [])).get('T', '')) for job in jobs)
     errors = [(job_number, test, actual_matrix.get(job_number)) for job_number, test in enumerate(defined_matrix, 1) if actual_matrix.get(job_number) != test]
 
-    if len(errors):
+    if errors:
         error_summary = '\n'.join('Job %s expected "%s" but found "%s" instead.' % (job_number, expected, actual) for job_number, expected, actual in errors)
 
         fail('Shippable run %s has a job matrix mismatch.' % run_id,

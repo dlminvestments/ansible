@@ -404,7 +404,7 @@ def copy_diff_files(src, dest, module):
     group = module.params['group']
     local_follow = module.params['local_follow']
     diff_files = filecmp.dircmp(src, dest).diff_files
-    if len(diff_files):
+    if diff_files:
         changed = True
     if not module.check_mode:
         for item in diff_files:
@@ -435,7 +435,7 @@ def copy_left_only(src, dest, module):
     group = module.params['group']
     local_follow = module.params['local_follow']
     left_only = filecmp.dircmp(src, dest).left_only
-    if len(left_only):
+    if left_only:
         changed = True
     if not module.check_mode:
         for item in left_only:

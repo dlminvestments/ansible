@@ -625,7 +625,7 @@ class User(object):
             else:
                 cmd.append('-N')
 
-        if self.groups is not None and len(self.groups):
+        if self.groups is not None and self.groups:
             groups = self.get_groups_set()
             if not self.local:
                 cmd.append('-G')
@@ -2452,7 +2452,7 @@ class AIX(User):
             cmd.append('-g')
             cmd.append(self.group)
 
-        if self.groups is not None and len(self.groups):
+        if self.groups is not None and self.groups:
             groups = self.get_groups_set()
             cmd.append('-G')
             cmd.append(','.join(groups))
@@ -2643,7 +2643,7 @@ class HPUX(User):
             cmd.append('-g')
             cmd.append(self.group)
 
-        if self.groups is not None and len(self.groups):
+        if self.groups is not None and self.groups:
             groups = self.get_groups_set()
             cmd.append('-G')
             cmd.append(','.join(groups))
@@ -2821,7 +2821,7 @@ class BusyBox(User):
                 self.module.fail_json(name=self.name, msg=err, rc=rc)
 
         # Add to additional groups
-        if self.groups is not None and len(self.groups):
+        if self.groups is not None and self.groups:
             groups = self.get_groups_set()
             add_cmd_bin = self.module.get_bin_path('adduser', True)
             for group in groups:
@@ -2855,7 +2855,7 @@ class BusyBox(User):
         remove_cmd_bin = self.module.get_bin_path('delgroup', True)
 
         # Manage group membership
-        if self.groups is not None and len(self.groups):
+        if self.groups is not None and self.groups:
             groups = self.get_groups_set()
             group_diff = set(current_groups).symmetric_difference(groups)
 
