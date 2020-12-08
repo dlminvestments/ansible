@@ -88,7 +88,7 @@ class ActionModule(ActionBase):
         del tmp  # tmp no longer has any effect
 
         if task_vars is None:
-            task_vars = dict()
+            task_vars = {}
 
         src = self._task.args.get('src', None)
         dest = self._task.args.get('dest', None)

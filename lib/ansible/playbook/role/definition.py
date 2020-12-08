@@ -56,7 +56,7 @@ class RoleDefinition(Base, Conditional, Taggable, CollectionSearch):
         self._role_path = None
         self._role_collection = None
         self._role_basedir = role_basedir
-        self._role_params = dict()
+        self._role_params = {}
         self._collection_list = collection_list
 
     # def __repr__(self):
@@ -147,7 +147,7 @@ class RoleDefinition(Base, Conditional, Taggable, CollectionSearch):
         if self._variable_manager is not None:
             all_vars = self._variable_manager.get_vars(play=self._play)
         else:
-            all_vars = dict()
+            all_vars = {}
 
         templar = Templar(loader=self._loader, variables=all_vars)
         role_name = templar.template(role_name)
@@ -208,8 +208,8 @@ class RoleDefinition(Base, Conditional, Taggable, CollectionSearch):
         them in a dictionary of params for parsing later
         '''
 
-        role_def = dict()
-        role_params = dict()
+        role_def = {}
+        role_params = {}
         base_attribute_names = frozenset(self._valid_attrs.keys())
         for (key, value) in iteritems(ds):
             # use the list of FieldAttribute values to determine what is and is not

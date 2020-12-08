@@ -1115,7 +1115,7 @@ def main():
             track_submodules=dict(default='no', type='bool'),
             umask=dict(default=None, type='raw'),
             archive=dict(type='path'),
-            archive_prefix=dict(),
+            archive_prefix={},
             separate_git_dir=dict(type='path'),
         ),
         mutually_exclusive=[('separate_git_dir', 'bare')],
@@ -1145,7 +1145,7 @@ def main():
     archive_prefix = module.params['archive_prefix']
     separate_git_dir = module.params['separate_git_dir']
 
-    result = dict(changed=False, warnings=list())
+    result = dict(changed=False, warnings=[])
 
     if module.params['accept_hostkey']:
         if ssh_opts is not None:

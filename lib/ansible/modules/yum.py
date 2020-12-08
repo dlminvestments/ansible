@@ -1292,10 +1292,10 @@ class YumModule(YumDnf):
         if update_all:
             cmd = self.yum_basecmd + ['update']
             will_update = set(updates.keys())
-            will_update_from_other_package = dict()
+            will_update_from_other_package = {}
         else:
             will_update = set()
-            will_update_from_other_package = dict()
+            will_update_from_other_package = {}
             for spec in items:
                 # some guess work involved with groups. update @<group> will install the group if missing
                 if spec.startswith('@'):

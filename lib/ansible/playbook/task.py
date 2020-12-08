@@ -250,7 +250,7 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
             # or list of dictionaries in a standard way
             new_ds['vars'] = self._load_vars(None, ds.get('vars'))
         else:
-            new_ds['vars'] = dict()
+            new_ds['vars'] = {}
 
         for (k, v) in iteritems(ds):
             if k in ('action', 'local_action', 'args', 'delegate_to') or k == action or k == 'shell':
@@ -346,7 +346,7 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
 
             elif isinstance(value, dict):
                 # should not really happen
-                env = dict()
+                env = {}
                 for env_item in value:
                     _parse_env_kv(env_item, value[env_item])
             else:
@@ -377,7 +377,7 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
         return value
 
     def get_vars(self):
-        all_vars = dict()
+        all_vars = {}
         if self._parent:
             all_vars.update(self._parent.get_vars())
 
@@ -391,7 +391,7 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
         return all_vars
 
     def get_include_params(self):
-        all_vars = dict()
+        all_vars = {}
         if self._parent:
             all_vars.update(self._parent.get_include_params())
         if self.action in C._ACTION_ALL_INCLUDES:

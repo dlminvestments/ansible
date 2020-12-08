@@ -1779,7 +1779,7 @@ def fetch_url(module, url, data=None, headers=None, method=None,
 
         # parse the cookies into a nice dictionary
         cookie_list = []
-        cookie_dict = dict()
+        cookie_dict = {}
         # Python sorts cookies in order of most specific (ie. longest) path first. See ``CookieJar._cookie_attrs``
         # Cookies with the same path are reversed from response order.
         # This code makes no assumptions about that, and accepts the order given by python

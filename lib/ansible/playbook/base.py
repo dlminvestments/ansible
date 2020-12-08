@@ -177,7 +177,7 @@ class FieldAttributeBase(with_metaclass(BaseMeta, object)):
                 self._attr_defaults[key] = value()
 
         # and init vars, avoid using defaults in field declaration as it lives across plays
-        self.vars = dict()
+        self.vars = {}
 
     def dump_me(self, depth=0):
         ''' this is never called from production code, it is here to be used when debugging as a 'complex print' '''
@@ -377,7 +377,7 @@ class FieldAttributeBase(with_metaclass(BaseMeta, object)):
                 value = set(value)
         elif attribute.isa == 'dict':
             if value is None:
-                value = dict()
+                value = {}
             elif not isinstance(value, dict):
                 raise TypeError("%s is not a dictionary" % value)
         elif attribute.isa == 'class':

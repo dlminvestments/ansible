@@ -39,7 +39,7 @@ class TaskResult:
             self._result = DataLoader().load(return_data)
 
         if task_fields is None:
-            self._task_fields = dict()
+            self._task_fields = {}
         else:
             self._task_fields = task_fields
 

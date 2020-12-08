@@ -227,7 +227,7 @@ class PlayContext(Base):
             # templated based on the loop variable, so we try and locate
             # the host name in the delegated variable dictionary here
             delegated_host_name = templar.template(task.delegate_to)
-            delegated_vars = variables.get('ansible_delegated_vars', dict()).get(delegated_host_name, dict())
+            delegated_vars = variables.get('ansible_delegated_vars', {}).get(delegated_host_name, {})
 
             delegated_transport = C.DEFAULT_TRANSPORT
             for transport_var in C.MAGIC_VARIABLE_MAPPING.get('connection'):
@@ -264,7 +264,7 @@ class PlayContext(Base):
             else:
                 delegated_vars['ansible_user'] = task.remote_user or self.remote_user
         else:
-            delegated_vars = dict()
+            delegated_vars = {}
 
             # setup shell
             for exe_var in C.MAGIC_VARIABLE_MAPPING.get('executable'):

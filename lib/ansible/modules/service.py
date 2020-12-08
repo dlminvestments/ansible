@@ -443,7 +443,7 @@ class LinuxService(Service):
         paths = ['/sbin', '/usr/sbin', '/bin', '/usr/bin']
         binaries = ['service', 'chkconfig', 'update-rc.d', 'rc-service', 'rc-update', 'initctl', 'systemctl', 'start', 'stop', 'restart', 'insserv']
         initpaths = ['/etc/init.d']
-        location = dict()
+        location = {}
 
         for binary in binaries:
             location[binary] = self.module.get_bin_path(binary, opt_dirs=paths)

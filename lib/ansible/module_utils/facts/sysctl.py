@@ -26,7 +26,7 @@ def get_sysctl(module, prefixes):
     cmd = [sysctl_cmd]
     cmd.extend(prefixes)
 
-    sysctl = dict()
+    sysctl = {}
 
     try:
         rc, out, err = module.run_command(cmd)

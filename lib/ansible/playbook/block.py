@@ -230,7 +230,7 @@ class Block(Base, Conditional, CollectionSearch, Taggable):
         a task we don't want to include the attribute list of tasks.
         '''
 
-        data = dict()
+        data = {}
         for attr in self._valid_attrs:
             if attr not in ('block', 'rescue', 'always'):
                 data[attr] = getattr(self, attr)
@@ -398,7 +398,7 @@ class Block(Base, Conditional, CollectionSearch, Taggable):
         if self._parent:
             return self._parent.get_include_params()
         else:
-            return dict()
+            return {}
 
     def all_parents_static(self):
         '''

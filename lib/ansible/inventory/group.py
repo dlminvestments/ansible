@@ -102,7 +102,7 @@ class Group:
     def deserialize(self, data):
         self.__init__()
         self.name = data.get('name')
-        self.vars = data.get('vars', dict())
+        self.vars = data.get('vars', {})
         self.depth = data.get('depth', 0)
         self.hosts = data.get('hosts', [])
         self._hosts = None
