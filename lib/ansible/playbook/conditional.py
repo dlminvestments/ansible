@@ -63,7 +63,8 @@ class Conditional:
         if not isinstance(value, list):
             setattr(self, name, [value])
 
-    def extract_defined_undefined(self, conditional):
+    @staticmethod
+    def extract_defined_undefined(conditional):
         results = []
 
         cond = conditional

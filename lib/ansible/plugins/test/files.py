@@ -26,7 +26,8 @@ from ansible import errors
 class TestModule(object):
     ''' Ansible file jinja2 tests '''
 
-    def tests(self):
+    @staticmethod
+    def tests():
         return {
             # file testing
             'is_dir': isdir,

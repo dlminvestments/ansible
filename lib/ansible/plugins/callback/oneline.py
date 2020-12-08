@@ -30,7 +30,8 @@ class CallbackModule(CallbackBase):
     CALLBACK_TYPE = 'stdout'
     CALLBACK_NAME = 'oneline'
 
-    def _command_generic_msg(self, hostname, result, caption):
+    @staticmethod
+    def _command_generic_msg(hostname, result, caption):
         stdout = result.get('stdout', '').replace('\n', '\\n').replace('\r', '\\r')
         if 'stderr' in result and result['stderr']:
             stderr = result.get('stderr', '').replace('\n', '\\n').replace('\r', '\\r')

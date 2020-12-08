@@ -132,7 +132,8 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
             else:
                 return "%s" % (self.action,)
 
-    def _merge_kv(self, ds):
+    @staticmethod
+    def _merge_kv(ds):
         if ds is None:
             return ""
         elif isinstance(ds, string_types):
@@ -158,7 +159,8 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
         else:
             return "TASK: %s" % self.get_name()
 
-    def _preprocess_with_loop(self, ds, new_ds, k, v):
+    @staticmethod
+    def _preprocess_with_loop(ds, new_ds, k, v):
         ''' take a lookup plugin name and store it correctly '''
 
         loop_name = k.replace("with_", "")
@@ -307,7 +309,8 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
 
         super(Task, self).post_validate(templar)
 
-    def _post_validate_loop(self, attr, value, templar):
+    @staticmethod
+    def _post_validate_loop(attr, value, templar):
         '''
         Override post validation for the loop field, which is templated
         specially in the TaskExecutor class when evaluating loops.
@@ -355,21 +358,24 @@ class Task(Base, Conditional, Taggable, CollectionSearch):
 
         return env
 
-    def _post_validate_changed_when(self, attr, value, templar):
+    @staticmethod
+    def _post_validate_changed_when(attr, value, templar):
         '''
         changed_when is evaluated after the execution of the task is complete,
         and should not be templated during the regular post_validate step.
         '''
         return value
 
-    def _post_validate_failed_when(self, attr, value, templar):
+    @staticmethod
+    def _post_validate_failed_when(attr, value, templar):
         '''
         failed_when is evaluated after the execution of the task is complete,
         and should not be templated during the regular post_validate step.
         '''
         return value
 
-    def _post_validate_until(self, attr, value, templar):
+    @staticmethod
+    def _post_validate_until(attr, value, templar):
         '''
         until is evaluated after the execution of the task is complete,
         and should not be templated during the regular post_validate step.

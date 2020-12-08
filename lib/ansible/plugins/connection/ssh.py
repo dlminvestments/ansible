@@ -1171,7 +1171,8 @@ class Connection(ConnectionBase):
             raise AnsibleError("failed to transfer file to %s %s:\n%s\n%s" %
                                (to_native(in_path), to_native(out_path), to_native(stdout), to_native(stderr)))
 
-    def _escape_win_path(self, path):
+    @staticmethod
+    def _escape_win_path(path):
         """ converts a Windows path to one that's supported by SFTP and SCP """
         # If using a root path then we need to start with /
         prefix = ""

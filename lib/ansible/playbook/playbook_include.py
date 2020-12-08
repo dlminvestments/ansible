@@ -154,7 +154,8 @@ class PlaybookInclude(Base, Conditional, Taggable):
 
         return super(PlaybookInclude, self).preprocess_data(new_ds)
 
-    def _preprocess_import(self, ds, new_ds, k, v):
+    @staticmethod
+    def _preprocess_import(ds, new_ds, k, v):
         '''
         Splits the playbook import line up into filename and parameters
         '''
