@@ -120,7 +120,7 @@ class TaskInclude(Task):
         if self.action not in C._ACTION_INCLUDE:
             all_vars = super(TaskInclude, self).get_vars()
         else:
-            all_vars = dict()
+            all_vars = {}
             if self._parent:
                 all_vars.update(self._parent.get_vars())
 

@@ -375,7 +375,7 @@ def main():
     result = dict(
         name=unit,
         changed=False,
-        status=dict(),
+        status={},
     )
 
     # Run daemon-reload first, if requested

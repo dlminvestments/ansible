@@ -26,14 +26,14 @@ class PSModuleDepFinder(object):
 
     def __init__(self):
         # This is also used by validate-modules to get a module's required utils in base and a collection.
-        self.ps_modules = dict()
-        self.exec_scripts = dict()
+        self.ps_modules = {}
+        self.exec_scripts = {}
 
         # by defining an explicit dict of cs utils and where they are used, we
         # can potentially save time by not adding the type multiple times if it
         # isn't needed
-        self.cs_utils_wrapper = dict()
-        self.cs_utils_module = dict()
+        self.cs_utils_wrapper = {}
+        self.cs_utils_module = {}
 
         self.ps_version = None
         self.os_version = None
@@ -289,9 +289,9 @@ def _create_powershell_wrapper(b_module_data, module_path, module_args,
     module_wrapper = "module_%s_wrapper" % substyle
     exec_manifest = dict(
         module_entry=to_text(base64.b64encode(b_module_data)),
-        powershell_modules=dict(),
-        csharp_utils=dict(),
-        csharp_utils_module=list(),  # csharp_utils only required by a module
+        powershell_modules={},
+        csharp_utils={},
+        csharp_utils_module=[],  # csharp_utils only required by a module
         module_args=module_args,
         actions=[module_wrapper],
         environment=environment,
@@ -332,7 +332,7 @@ def _create_powershell_wrapper(b_module_data, module_path, module_args,
 
     coverage_manifest = dict(
         module_path=module_path,
-        module_util_paths=dict(),
+        module_util_paths={},
         output=None,
     )
     coverage_output = C.config.get_config_value('COVERAGE_REMOTE_OUTPUT', variables=task_vars)

@@ -62,7 +62,7 @@ class ConsoleCLI(CLI, cmd.Cmd):
         self.pattern = None
         self.variable_manager = None
         self.loader = None
-        self.passwords = dict()
+        self.passwords = {}
 
         self.modules = None
         self.cwd = '*'

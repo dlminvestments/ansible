@@ -105,7 +105,7 @@ except ImportError as e:
     sys.exit(1)
 
 
-AVAILABLE_HASH_ALGORITHMS = dict()
+AVAILABLE_HASH_ALGORITHMS = {}
 try:
     import hashlib
 
@@ -703,7 +703,7 @@ class AnsibleModule(object):
 
         self.aliases = {}
         self._legal_inputs = []
-        self._options_context = list()
+        self._options_context = []
         self._tmpdir = None
 
         if add_file_common_args:
@@ -1568,7 +1568,7 @@ class AnsibleModule(object):
             msg = "Unsupported parameters for (%s) module: %s" % (self._name, ', '.join(sorted(list(unsupported_parameters))))
             if self._options_context:
                 msg += " found in %s." % " -> ".join(self._options_context)
-            supported_parameters = list()
+            supported_parameters = []
             for key in sorted(spec.keys()):
                 if 'aliases' in spec[key] and spec[key]['aliases']:
                     supported_parameters.append("%s (%s)" % (key, ', '.join(sorted(spec[key]['aliases']))))
@@ -2007,7 +2007,7 @@ class AnsibleModule(object):
         if not self.no_log:
 
             if log_args is None:
-                log_args = dict()
+                log_args = {}
 
             module = 'ansible-%s' % self._name
             if isinstance(module, binary_type):
@@ -2058,7 +2058,7 @@ class AnsibleModule(object):
         ''' log that ansible ran the module '''
         # TODO: generalize a separate log function and make log_invocation use it
         # Sanitize possible password argument when logging.
-        log_args = dict()
+        log_args = {}
 
         for param in self.params:
             canon = self.aliases.get(param, param)

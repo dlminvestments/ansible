@@ -292,7 +292,7 @@ def normalize_known_hosts_key(key):
     '''
     key = key.strip()  # trim trailing newline
     k = key.split()
-    d = dict()
+    d = {}
     # The optional "marker" field, used for @cert-authority or @revoked
     if k[0][0] == '@':
         d['options'] = k[0]

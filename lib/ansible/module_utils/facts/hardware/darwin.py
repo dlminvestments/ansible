@@ -52,8 +52,8 @@ class DarwinHardware(Hardware):
     def get_system_profile(self):
         rc, out, err = self.module.run_command(["/usr/sbin/system_profiler", "SPHardwareDataType"])
         if rc != 0:
-            return dict()
-        system_profile = dict()
+            return {}
+        system_profile = {}
         for line in out.splitlines():
             if ': ' in line:
                 (key, value) = line.split(': ', 1)

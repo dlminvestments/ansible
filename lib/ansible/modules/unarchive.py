@@ -267,7 +267,7 @@ class ZipArchive(object):
         self.cmd_path = self.module.get_bin_path('unzip')
         self.zipinfocmd_path = self.module.get_bin_path('zipinfo')
         self._files_in_archive = []
-        self._infodict = dict()
+        self._infodict = {}
 
     def _permstr_to_octal(self, modestr, umask):
         ''' Convert a Unix permission string (rw-r--r--) into a mode (0644) '''

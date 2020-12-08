@@ -27,7 +27,7 @@ if 'action_write_locks' not in globals():
     # Do not initialize this more than once because it seems to bash
     # the existing one.  multiprocessing must be reloading the module
     # when it forks?
-    action_write_locks = dict()
+    action_write_locks = {}
 
     # Below is a Lock for use when we weren't expecting a named module.  It gets used when an action
     # plugin invokes a module whose name does not match with the action's name.  Slightly less

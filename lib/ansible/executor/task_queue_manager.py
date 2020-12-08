@@ -126,8 +126,8 @@ class TaskQueueManager:
         self._terminated = False
 
         # dictionaries to keep track of failed/unreachable hosts
-        self._failed_hosts = dict()
-        self._unreachable_hosts = dict()
+        self._failed_hosts = {}
+        self._unreachable_hosts = {}
 
         try:
             self._final_q = FinalQueue()
@@ -364,7 +364,7 @@ class TaskQueueManager:
                         pass
 
     def clear_failed_hosts(self):
-        self._failed_hosts = dict()
+        self._failed_hosts = {}
 
     def get_inventory(self):
         return self._inventory

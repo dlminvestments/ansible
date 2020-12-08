@@ -88,7 +88,7 @@ class ConnectionProcess(object):
 
     def start(self, variables):
         try:
-            messages = list()
+            messages = []
             result = {}
 
             messages.append(('vvvv', 'control socket path is %s' % self.socket_path))
@@ -219,7 +219,7 @@ def main():
     """
     rc = 0
     result = {}
-    messages = list()
+    messages = []
     socket_path = None
 
     # Need stdin as a byte stream

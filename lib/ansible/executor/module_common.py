@@ -574,7 +574,7 @@ def _slurp(path):
     return data
 
 
-def _get_shebang(interpreter, task_vars, templar, args=tuple()):
+def _get_shebang(interpreter, task_vars, templar, args=()):
     """
     Note not stellar API:
        Returns None instead of always returning a shebang line.  Doing it this

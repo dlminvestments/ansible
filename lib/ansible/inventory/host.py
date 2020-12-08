@@ -72,7 +72,7 @@ class Host:
         self.__init__(gen_uuid=False)
 
         self.name = data.get('name')
-        self.vars = data.get('vars', dict())
+        self.vars = data.get('vars', {})
         self.address = data.get('address', '')
         self._uuid = data.get('uuid', None)
         self.implicit = data.get('implicit', False)

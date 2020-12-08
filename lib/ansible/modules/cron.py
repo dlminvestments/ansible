@@ -607,8 +607,8 @@ def main():
     do_install = state == 'present'
 
     changed = False
-    res_args = dict()
-    warnings = list()
+    res_args = {}
+    warnings = []
 
     if cron_file:
         cron_file_basename = os.path.basename(cron_file)
@@ -634,7 +634,7 @@ def main():
         )
 
     if module._diff:
-        diff = dict()
+        diff = {}
         diff['before'] = crontab.n_existing
         if crontab.cron_file:
             diff['before_header'] = crontab.cron_file
@@ -680,7 +680,7 @@ def main():
             diff['after'] = ''
             diff['after_header'] = '/dev/null'
         else:
-            diff = dict()
+            diff = {}
         if module.check_mode:
             changed = os.path.isfile(crontab.cron_file)
         else:

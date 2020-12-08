@@ -146,7 +146,7 @@ class ModuleArgsParser:
         # final args are the ones we'll eventually return, so first update
         # them with any additional args specified, which have lower priority
         # than those which may be parsed/normalized next
-        final_args = dict()
+        final_args = {}
         if additional_args:
             if isinstance(additional_args, string_types):
                 templar = Templar(loader=None)
@@ -267,14 +267,14 @@ class ModuleArgsParser:
 
         action = None
         delegate_to = self._task_ds.get('delegate_to', Sentinel)
-        args = dict()
+        args = {}
 
         self.internal_redirect_list = []
 
         # This is the standard YAML form for command-type modules. We grab
         # the args and pass them in as additional arguments, which can/will
         # be overwritten via dict updates from the other arg sources below
-        additional_args = self._task_ds.get('args', dict())
+        additional_args = self._task_ds.get('args', {})
 
         # We can have one of action, local_action, or module specified
         # action

@@ -151,7 +151,7 @@ def main():
     timeout = module.params['timeout']
     echo = module.params['echo']
 
-    events = dict()
+    events = {}
     for key, value in responses.items():
         if isinstance(value, list):
             response = response_closure(module, key, value)

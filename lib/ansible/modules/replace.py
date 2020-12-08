@@ -229,7 +229,7 @@ def main():
     params = module.params
     path = params['path']
     encoding = params['encoding']
-    res_args = dict()
+    res_args = {}
 
     params['after'] = to_text(params['after'], errors='surrogate_or_strict', nonstring='passthru')
     params['before'] = to_text(params['before'], errors='surrogate_or_strict', nonstring='passthru')

@@ -53,7 +53,7 @@ def to_masklen(val):
     if not is_netmask(val):
         raise ValueError('invalid value for netmask: %s' % val)
 
-    bits = list()
+    bits = []
     for x in val.split('.'):
         octet = bin(int(x)).count('1')
         bits.append(octet)
@@ -74,7 +74,7 @@ def to_subnet(addr, mask, dotted_notation=False):
     addr = addr.split('.')
     mask = mask.split('.')
 
-    network = list()
+    network = []
     for s_addr, s_mask in zip(addr, mask):
         network.append(str(int(s_addr) & int(s_mask)))
 

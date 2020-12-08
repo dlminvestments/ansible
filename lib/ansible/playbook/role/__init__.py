@@ -101,7 +101,7 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
         self._role_name = None
         self._role_path = None
         self._role_collection = None
-        self._role_params = dict()
+        self._role_params = {}
         self._loader = None
 
         self._metadata = None
@@ -111,10 +111,10 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
         self._task_blocks = []
         self._handler_blocks = []
         self._compiled_handler_blocks = None
-        self._default_vars = dict()
-        self._role_vars = dict()
-        self._had_task_run = dict()
-        self._completed = dict()
+        self._default_vars = {}
+        self._role_vars = {}
+        self._had_task_run = {}
+        self._completed = {}
 
         if from_files is None:
             from_files = {}
@@ -172,7 +172,7 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
             r._load_role_data(role_include, parent_role=parent_role)
 
             if role_include.get_name() not in play.ROLE_CACHE:
-                play.ROLE_CACHE[role_include.get_name()] = dict()
+                play.ROLE_CACHE[role_include.get_name()] = {}
 
             # FIXME: how to handle cache keys for collection-based roles, since they're technically adjustable per task?
             play.ROLE_CACHE[role_include.get_name()][hashed_params] = r
@@ -207,13 +207,13 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
         # vars and default vars are regular dictionaries
         self._role_vars = self._load_role_yaml('vars', main=self._from_files.get('vars'), allow_dir=True)
         if self._role_vars is None:
-            self._role_vars = dict()
+            self._role_vars = {}
         elif not isinstance(self._role_vars, dict):
             raise AnsibleParserError("The vars/main.yml file for role '%s' must contain a dictionary of variables" % self._role_name)
 
         self._default_vars = self._load_role_yaml('defaults', main=self._from_files.get('defaults'), allow_dir=True)
         if self._default_vars is None:
-            self._default_vars = dict()
+            self._default_vars = {}
         elif not isinstance(self._default_vars, dict):
             raise AnsibleParserError("The defaults/main.yml file for role '%s' must contain a dictionary of variables" % self._role_name)
 
@@ -326,7 +326,7 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
     def get_default_vars(self, dep_chain=None):
         dep_chain = [] if dep_chain is None else dep_chain
 
-        default_vars = dict()
+        default_vars = {}
         for dep in self.get_all_dependencies():
             default_vars = combine_vars(default_vars, dep.get_default_vars())
         if dep_chain:
@@ -338,7 +338,7 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
     def get_inherited_vars(self, dep_chain=None):
         dep_chain = [] if dep_chain is None else dep_chain
 
-        inherited_vars = dict()
+        inherited_vars = {}
 
         if dep_chain:
             for parent in dep_chain:
@@ -490,11 +490,11 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
     def deserialize(self, data, include_deps=True):
         self._role_name = data.get('_role_name', '')
         self._role_path = data.get('_role_path', '')
-        self._role_vars = data.get('_role_vars', dict())
-        self._role_params = data.get('_role_params', dict())
-        self._default_vars = data.get('_default_vars', dict())
-        self._had_task_run = data.get('_had_task_run', dict())
-        self._completed = data.get('_completed', dict())
+        self._role_vars = data.get('_role_vars', {})
+        self._role_params = data.get('_role_params', {})
+        self._default_vars = data.get('_default_vars', {})
+        self._had_task_run = data.get('_had_task_run', {})
+        self._completed = data.get('_completed', {})
 
         if include_deps:
             deps = []

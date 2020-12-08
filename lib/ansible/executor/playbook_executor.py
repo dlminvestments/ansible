@@ -53,7 +53,7 @@ class PlaybookExecutor:
         self._variable_manager = variable_manager
         self._loader = loader
         self.passwords = passwords
-        self._unreachable_hosts = dict()
+        self._unreachable_hosts = {}
 
         if context.CLIARGS.get('listhosts') or context.CLIARGS.get('listtasks') or \
                 context.CLIARGS.get('listtags') or context.CLIARGS.get('syntax'):

@@ -99,12 +99,12 @@ def get_flags_from_attributes(attributes):
 def get_file_arg_spec():
     arg_spec = dict(
         mode=dict(type='raw'),
-        owner=dict(),
-        group=dict(),
-        seuser=dict(),
-        serole=dict(),
-        selevel=dict(),
-        setype=dict(),
+        owner={},
+        group={},
+        seuser={},
+        serole={},
+        selevel={},
+        setype={},
         attributes=dict(aliases=['attr']),
     )
     return arg_spec

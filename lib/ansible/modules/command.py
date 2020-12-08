@@ -255,11 +255,11 @@ def main():
     # hence don't copy this one if you are looking to build others!
     module = AnsibleModule(
         argument_spec=dict(
-            _raw_params=dict(),
+            _raw_params={},
             _uses_shell=dict(type='bool', default=False),
             argv=dict(type='list', elements='str'),
             chdir=dict(type='path'),
-            executable=dict(),
+            executable={},
             creates=dict(type='path'),
             removes=dict(type='path'),
             # The default for this really comes from the action plugin

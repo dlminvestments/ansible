@@ -56,7 +56,7 @@ class DataLoader:
 
         # NOTE: not effective with forks as the main copy does not get updated.
         # avoids rereading files
-        self._FILE_CACHE = dict()
+        self._FILE_CACHE = {}
 
         # NOTE: not thread safe, also issues with forks not returning data to main proc
         #       so they need to be cleaned independently. See WorkerProcess for example.

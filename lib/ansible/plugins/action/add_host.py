@@ -86,7 +86,7 @@ class ActionModule(ActionBase):
                     new_groups.append(group_name.strip())
 
         # Add any variables to the new_host
-        host_vars = dict()
+        host_vars = {}
         special_args = frozenset(('name', 'hostname', 'groupname', 'groups'))
         for k in args.keys():
             if k not in special_args:
