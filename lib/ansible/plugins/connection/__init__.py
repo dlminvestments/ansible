@@ -226,7 +226,8 @@ class ConnectionBase(AnsiblePlugin):
         fcntl.lockf(f, fcntl.LOCK_UN)
         display.vvvv('CONNECTION: pid %d released lock on %d' % (os.getpid(), f), host=self._play_context.remote_addr)
 
-    def reset(self):
+    @staticmethod
+    def reset():
         display.warning("Reset is not implemented for this connection")
 
     # NOTE: these password functions are all become specific, the name is

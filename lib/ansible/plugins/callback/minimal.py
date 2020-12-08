@@ -30,7 +30,8 @@ class CallbackModule(CallbackBase):
     CALLBACK_TYPE = 'stdout'
     CALLBACK_NAME = 'minimal'
 
-    def _command_generic_msg(self, host, result, caption):
+    @staticmethod
+    def _command_generic_msg(host, result, caption):
         ''' output the result of a command run '''
 
         buf = "%s | %s | rc=%s >>\n" % (host, caption, result.get('rc', -1))

@@ -281,7 +281,8 @@ class CallbackModule(CallbackBase):
 
         return test_case
 
-    def _cleanse_string(self, value):
+    @staticmethod
+    def _cleanse_string(value):
         """ convert surrogate escapes to the unicode replacement character to avoid XML encoding errors """
         return to_text(to_bytes(value, errors='surrogateescape'), errors='replace')
 

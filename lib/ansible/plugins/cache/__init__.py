@@ -115,7 +115,8 @@ class BaseFileCacheModule(BaseCacheModule):
         self._cache = {}
         self.validate_cache_connection()
 
-    def _get_cache_connection(self, source):
+    @staticmethod
+    def _get_cache_connection(source):
         if source:
             try:
                 return os.path.expanduser(os.path.expandvars(source))

@@ -8,7 +8,8 @@ def test_subdir_filter(data):
 
 class FilterModule(object):
 
-    def filters(self):
+    @staticmethod
+    def filters():
         return {
             'test_subdir_filter': test_subdir_filter
         }

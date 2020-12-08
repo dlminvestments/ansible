@@ -224,7 +224,8 @@ def falsy(value, convert_bool=False):
 class TestModule(object):
     ''' Ansible core jinja2 tests '''
 
-    def tests(self):
+    @staticmethod
+    def tests():
         return {
             # failure testing
             'failed': failed,

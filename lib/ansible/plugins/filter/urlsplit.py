@@ -29,7 +29,8 @@ def split_url(value, query='', alias='urlsplit'):
 class FilterModule(object):
     ''' URI filter '''
 
-    def filters(self):
+    @staticmethod
+    def filters():
         return {
             'urlsplit': split_url
         }

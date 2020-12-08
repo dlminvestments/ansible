@@ -414,7 +414,8 @@ class StrategyBase:
             host_list = [task_host.name]
         return host_list
 
-    def get_delegated_hosts(self, result, task):
+    @staticmethod
+    def get_delegated_hosts(result, task):
         host_name = result.get('_ansible_delegated_vars', {}).get('ansible_delegated_host', None)
         return [host_name or task.delegate_to]
 
@@ -897,7 +898,8 @@ class StrategyBase:
 
         result_item['changed'] = changed
 
-    def _copy_included_file(self, included_file):
+    @staticmethod
+    def _copy_included_file(included_file):
         '''
         A proven safe and performant way to create a copy of an included file
         '''
@@ -1084,10 +1086,12 @@ class StrategyBase:
         display.debug("done running handlers, result is: %s" % result)
         return result
 
-    def _filter_notified_failed_hosts(self, iterator, notified_hosts):
+    @staticmethod
+    def _filter_notified_failed_hosts(iterator, notified_hosts):
         return []
 
-    def _filter_notified_hosts(self, notified_hosts):
+    @staticmethod
+    def _filter_notified_hosts(notified_hosts):
         '''
         Filter notified hosts accordingly to strategy
         '''
@@ -1119,7 +1123,8 @@ class StrategyBase:
 
         return ret
 
-    def _cond_not_supported_warn(self, task_name):
+    @staticmethod
+    def _cond_not_supported_warn(task_name):
         display.warning("%s task does not support when conditional" % task_name)
 
     def _execute_meta(self, task, play_context, iterator, target_host):

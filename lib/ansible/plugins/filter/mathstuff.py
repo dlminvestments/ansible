@@ -244,7 +244,8 @@ def rekey_on_member(data, key, duplicates='error'):
 class FilterModule(object):
     ''' Ansible math jinja2 filters '''
 
-    def filters(self):
+    @staticmethod
+    def filters():
         filters = {
             # general math
             'min': min,

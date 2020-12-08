@@ -80,7 +80,8 @@ class StrategyModule(StrategyBase):
 
         return self._create_noop_block_from(original_block, parent)
 
-    def _get_next_task_lockstep(self, hosts, iterator):
+    @staticmethod
+    def _get_next_task_lockstep(hosts, iterator):
         '''
         Returns a list of (host, task) tuples, where the task may
         be a noop task to keep the iterator in lock step across

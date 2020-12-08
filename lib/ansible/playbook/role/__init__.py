@@ -335,7 +335,8 @@ class Role(Base, Conditional, Taggable, CollectionSearch):
         default_vars = combine_vars(default_vars, self._default_vars)
         return default_vars
 
-    def get_inherited_vars(self, dep_chain=None):
+    @staticmethod
+    def get_inherited_vars(dep_chain=None):
         dep_chain = [] if dep_chain is None else dep_chain
 
         inherited_vars = {}

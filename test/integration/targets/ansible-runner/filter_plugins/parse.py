@@ -11,7 +11,8 @@ def parse_json(value):
 
 
 class FilterModule(object):
-    def filters(self):
+    @staticmethod
+    def filters():
         return {
             'parse_json': parse_json,
         }

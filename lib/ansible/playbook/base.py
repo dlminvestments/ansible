@@ -193,7 +193,8 @@ class FieldAttributeBase(with_metaclass(BaseMeta, object)):
         if hasattr(self, '_play') and self._play:
             self._play.dump_me(depth + 2)
 
-    def preprocess_data(self, ds):
+    @staticmethod
+    def preprocess_data(ds):
         ''' infrequently used method to do some pre-processing of legacy terms '''
         return ds
 
@@ -493,7 +494,8 @@ class FieldAttributeBase(with_metaclass(BaseMeta, object)):
         except TypeError as e:
             raise AnsibleParserError("Invalid variable name in vars specified for %s: %s" % (self.__class__.__name__, e), obj=ds, orig_exc=e)
 
-    def _extend_value(self, value, new_value, prepend=False):
+    @staticmethod
+    def _extend_value(value, new_value, prepend=False):
         '''
         Will extend the value given with new_value (and will turn both
         into lists if they are not so already). The values are run through

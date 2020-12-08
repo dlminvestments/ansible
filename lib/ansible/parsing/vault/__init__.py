@@ -351,7 +351,8 @@ class PromptVaultSecret(VaultSecret):
 
         return None
 
-    def confirm(self, b_vault_pass_1, b_vault_pass_2):
+    @staticmethod
+    def confirm(b_vault_pass_1, b_vault_pass_2):
         # enforce no newline chars at the end of passwords
 
         if b_vault_pass_1 != b_vault_pass_2:
@@ -783,7 +784,8 @@ class VaultEditor:
         self.vault = vault or VaultLib()
 
     # TODO: mv shred file stuff to it's own class
-    def _shred_file_custom(self, tmp_path):
+    @staticmethod
+    def _shred_file_custom(tmp_path):
         """"Destroy a file, when shred (core-utils) is not available
 
         Unix `shred' destroys files "so that they can be recovered only with great difficulty with
@@ -896,7 +898,8 @@ class VaultEditor:
         # always shred temp, jic
         self._shred_file(tmp_path)
 
-    def _real_path(self, filename):
+    @staticmethod
+    def _real_path(filename):
         # '-' is special to VaultEditor, dont expand it.
         if filename == '-':
             return filename
@@ -1034,7 +1037,8 @@ class VaultEditor:
         display.vvvvv(u'Rekeyed file "%s" (decrypted with vault id "%s") was encrypted with new vault-id "%s" and vault secret %s' %
                       (to_text(filename), to_text(vault_id_used), to_text(new_vault_id), to_text(new_vault_secret)))
 
-    def read_data(self, filename):
+    @staticmethod
+    def read_data(filename):
 
         try:
             if filename == '-':
@@ -1127,7 +1131,8 @@ class VaultEditor:
             finally:
                 os.umask(current_umask)
 
-    def shuffle_files(self, src, dest):
+    @staticmethod
+    def shuffle_files(src, dest):
         prev = None
         # overwrite dest with src
         if os.path.isfile(dest):
@@ -1142,7 +1147,8 @@ class VaultEditor:
             os.chmod(dest, prev.st_mode)
             os.chown(dest, prev.st_uid, prev.st_gid)
 
-    def _editor_shell_command(self, filename):
+    @staticmethod
+    def _editor_shell_command(filename):
         env_editor = os.environ.get('EDITOR', 'vi')
         editor = shlex.split(env_editor)
         editor.append(filename)

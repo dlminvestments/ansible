@@ -246,7 +246,8 @@ class ShellModule(ShellBase):
     def wrap_for_exec(self, cmd):
         return '& %s; exit $LASTEXITCODE' % cmd
 
-    def _unquote(self, value):
+    @staticmethod
+    def _unquote(value):
         '''Remove any matching quotes that wrap the given value.'''
         value = to_text(value or '')
         m = re.match(r'^\s*?\'(.*?)\'\s*?$', value)
@@ -257,13 +258,15 @@ class ShellModule(ShellBase):
             return m.group(1)
         return value
 
-    def _escape(self, value):
+    @staticmethod
+    def _escape(value):
         '''Return value escaped for use in PowerShell single quotes.'''
         # There are 5 chars that need to be escaped in a single quote.
         # https://github.com/PowerShell/PowerShell/blob/b7cb335f03fe2992d0cbd61699de9d9aafa1d7c1/src/System.Management.Automation/engine/parser/CharTraits.cs#L265-L272
         return re.compile(u"(['\u2018\u2019\u201a\u201b])").sub(u'\\1\\1', value)
 
-    def _encode_script(self, script, as_list=False, strict_mode=True, preserve_rc=True):
+    @staticmethod
+    def _encode_script(script, as_list=False, strict_mode=True, preserve_rc=True):
         '''Convert a PowerShell script to a single base64-encoded command.'''
         script = to_text(script)
 

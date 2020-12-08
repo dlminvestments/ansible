@@ -26,7 +26,8 @@ class _EventSource:
 
         return self
 
-    def _on_exception(self, handler, exc, *args, **kwargs):
+    @staticmethod
+    def _on_exception(handler, exc, *args, **kwargs):
         # if we return True, we want the caller to re-raise
         return True
 

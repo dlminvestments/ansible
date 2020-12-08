@@ -79,42 +79,50 @@ class ShellBase(AnsiblePlugin):
     def _generate_temp_dir_name():
         return 'ansible-tmp-%s-%s-%s' % (time.time(), os.getpid(), random.randint(0, 2**48))
 
-    def env_prefix(self, **kwargs):
+    @staticmethod
+    def env_prefix(**kwargs):
         return ' '.join(['%s=%s' % (k, shlex_quote(text_type(v))) for k, v in kwargs.items()])
 
-    def join_path(self, *args):
+    @staticmethod
+    def join_path(*args):
         return os.path.join(*args)
 
     # some shells (eg, powershell) are snooty about filenames/extensions, this lets the shell plugin have a say
-    def get_remote_filename(self, pathname):
+    @staticmethod
+    def get_remote_filename(pathname):
         base_name = os.path.basename(pathname.strip())
         return base_name.strip()
 
-    def path_has_trailing_slash(self, path):
+    @staticmethod
+    def path_has_trailing_slash(path):
         return path.endswith('/')
 
-    def chmod(self, paths, mode):
+    @staticmethod
+    def chmod(paths, mode):
         cmd = ['chmod', mode]
         cmd.extend(paths)
         cmd = [shlex_quote(c) for c in cmd]
 
         return ' '.join(cmd)
 
-    def chown(self, paths, user):
+    @staticmethod
+    def chown(paths, user):
         cmd = ['chown', user]
         cmd.extend(paths)
         cmd = [shlex_quote(c) for c in cmd]
 
         return ' '.join(cmd)
 
-    def chgrp(self, paths, group):
+    @staticmethod
+    def chgrp(paths, group):
         cmd = ['chgrp', group]
         cmd.extend(paths)
         cmd = [shlex_quote(c) for c in cmd]
 
         return ' '.join(cmd)
 
-    def set_user_facl(self, paths, user, mode):
+    @staticmethod
+    def set_user_facl(paths, user, mode):
         """Only sets acls for users as that's really all we need"""
         cmd = ['setfacl', '-m', 'u:%s:%s' % (user, mode)]
         cmd.extend(paths)
@@ -129,7 +137,8 @@ class ShellBase(AnsiblePlugin):
             cmd += '-r '
         return cmd + "%s %s" % (path, self._SHELL_REDIRECT_ALLNULL)
 
-    def exists(self, path):
+    @staticmethod
+    def exists(path):
         cmd = ['test', '-e', shlex_quote(path)]
         return ' '.join(cmd)
 
@@ -175,7 +184,8 @@ class ShellBase(AnsiblePlugin):
 
         return cmd
 
-    def expand_user(self, user_home_path, username=''):
+    @staticmethod
+    def expand_user(user_home_path, username=''):
         ''' Return a command to expand tildes in a path
 
         It can be either "~" or "~username". We just ignore $HOME
@@ -201,7 +211,8 @@ class ShellBase(AnsiblePlugin):
         """Return the working directory after connecting"""
         return 'echo %spwd%s' % (self._SHELL_SUB_LEFT, self._SHELL_SUB_RIGHT)
 
-    def build_module_command(self, env_string, shebang, cmd, arg_path=None):
+    @staticmethod
+    def build_module_command(env_string, shebang, cmd, arg_path=None):
         # don't quote the cmd if it's an empty string, because this will break pipelining mode
         if cmd.strip() != '':
             cmd = shlex_quote(cmd)
@@ -225,10 +236,12 @@ class ShellBase(AnsiblePlugin):
 
         return cmd
 
-    def wrap_for_exec(self, cmd):
+    @staticmethod
+    def wrap_for_exec(cmd):
         """wrap script execution with any necessary decoration (eg '&' for quoted powershell script paths)"""
         return cmd
 
-    def quote(self, cmd):
+    @staticmethod
+    def quote(cmd):
         """Returns a shell-escaped string that can be safely used as one token in a shell command line"""
         return shlex_quote(cmd)

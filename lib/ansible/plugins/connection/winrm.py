@@ -443,7 +443,8 @@ class Connection(ConnectionBase):
         else:
             raise AnsibleError('No transport found for WinRM connection')
 
-    def _winrm_send_input(self, protocol, shell_id, command_id, stdin, eof=False):
+    @staticmethod
+    def _winrm_send_input(protocol, shell_id, command_id, stdin, eof=False):
         rq = {'env:Envelope': protocol._get_soap_header(
             resource_uri='http://schemas.microsoft.com/wbem/wsman/1/windows/shell/cmd',
             action='http://schemas.microsoft.com/wbem/wsman/1/windows/shell/Send',
@@ -538,7 +539,8 @@ class Connection(ConnectionBase):
         self.shell_id = None
         self._connect()
 
-    def _wrapper_payload_stream(self, payload, buffer_size=200000):
+    @staticmethod
+    def _wrapper_payload_stream(payload, buffer_size=200000):
         payload_bytes = to_bytes(payload)
         byte_count = len(payload_bytes)
         for i in range(0, byte_count, buffer_size):

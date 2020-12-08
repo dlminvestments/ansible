@@ -7,7 +7,8 @@ def testtest(data):
 
 
 class TestModule(object):
-    def tests(self):
+    @staticmethod
+    def tests():
         return {
             'testtest': testtest
         }

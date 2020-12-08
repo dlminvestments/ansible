@@ -573,7 +573,8 @@ def path_join(paths):
 class FilterModule(object):
     ''' Ansible core jinja2 filters '''
 
-    def filters(self):
+    @staticmethod
+    def filters():
         return {
             # jinja2 overrides
             'groupby': do_groupby,

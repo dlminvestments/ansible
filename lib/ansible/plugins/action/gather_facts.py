@@ -45,7 +45,8 @@ class ActionModule(ActionBase):
 
         return mod_args
 
-    def _combine_task_result(self, result, task_result):
+    @staticmethod
+    def _combine_task_result(result, task_result):
         filtered_res = {
             'ansible_facts': task_result.get('ansible_facts', {}),
             'warnings': task_result.get('warnings', []),

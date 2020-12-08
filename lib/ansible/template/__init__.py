@@ -719,7 +719,8 @@ class Templar:
 
         return self._tests.copy()
 
-    def _get_extensions(self):
+    @staticmethod
+    def _get_extensions():
         '''
         Return jinja2 extensions to load.
 
@@ -980,10 +981,12 @@ class Templar:
 
         return thing if thing is not None else ''
 
-    def _fail_lookup(self, name, *args, **kwargs):
+    @staticmethod
+    def _fail_lookup(name, *args, **kwargs):
         raise AnsibleError("The lookup `%s` was found, however lookups were disabled from templating" % name)
 
-    def _now_datetime(self, utc=False, fmt=None):
+    @staticmethod
+    def _now_datetime(utc=False, fmt=None):
         '''jinja2 global function to return current datetime, potentially formatted via strftime'''
         if utc:
             now = datetime.datetime.utcnow()
