@@ -25,7 +25,7 @@ def main():
     os.chdir(temp)
     os.rmdir(temp)
 
-    module = AnsibleModule(argument_spec=dict())
+    module = AnsibleModule(argument_spec={})
     module.exit_json(before=temp, after=os.getcwd())
 
 

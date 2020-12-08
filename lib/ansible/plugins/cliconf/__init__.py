@@ -80,7 +80,7 @@ class CliconfBase(AnsiblePlugin):
     def __init__(self, connection):
         super(CliconfBase, self).__init__()
         self._connection = connection
-        self.history = list()
+        self.history = []
         self.response_logging = False
 
     def _alarm_handler(self, signum, frame):
@@ -152,7 +152,7 @@ class CliconfBase(AnsiblePlugin):
         """ Resets the history of run commands
         :return: None
         """
-        self.history = list()
+        self.history = []
 
     def enable_response_logging(self):
         """Enable logging command response"""

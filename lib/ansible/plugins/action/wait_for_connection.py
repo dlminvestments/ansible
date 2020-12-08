@@ -62,7 +62,7 @@ class ActionModule(ActionBase):
 
     def run(self, tmp=None, task_vars=None):
         if task_vars is None:
-            task_vars = dict()
+            task_vars = {}
 
         connect_timeout = int(self._task.args.get('connect_timeout', self.DEFAULT_CONNECT_TIMEOUT))
         delay = int(self._task.args.get('delay', self.DEFAULT_DELAY))
@@ -88,7 +88,7 @@ class ActionModule(ActionBase):
             except AttributeError:
                 pass
 
-            ping_result = self._execute_module(module_name='ansible.legacy.ping', module_args=dict(), task_vars=task_vars)
+            ping_result = self._execute_module(module_name='ansible.legacy.ping', module_args={}, task_vars=task_vars)
 
             # Test module output
             if ping_result['ping'] != 'pong':

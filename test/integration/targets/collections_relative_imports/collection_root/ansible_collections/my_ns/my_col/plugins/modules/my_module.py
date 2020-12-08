@@ -9,7 +9,7 @@ from ..module_utils import my_util3
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict(),
+        argument_spec={},
         supports_check_mode=True
     )
 

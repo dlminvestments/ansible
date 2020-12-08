@@ -25,8 +25,8 @@ class BecomeBase(AnsiblePlugin):
     name = None
 
     # messages for detecting prompted password issues
-    fail = tuple()
-    missing = tuple()
+    fail = ()
+    missing = ()
 
     # many connection plugins cannot provide tty, set to True if your become
     # plugin requires a tty, i.e su

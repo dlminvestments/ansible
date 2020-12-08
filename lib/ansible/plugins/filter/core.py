@@ -152,7 +152,7 @@ def regex_search(value, regex, *args, **kwargs):
 
     value = to_text(value, errors='surrogate_or_strict', nonstring='simplerepr')
 
-    groups = list()
+    groups = []
     for arg in args:
         if arg.startswith('\\g'):
             match = re.match(r'\\g<(\S+)>', arg).group(1)
@@ -174,7 +174,7 @@ def regex_search(value, regex, *args, **kwargs):
         if not groups:
             return match.group()
         else:
-            items = list()
+            items = []
             for item in groups:
                 items.append(match.group(item))
             return items

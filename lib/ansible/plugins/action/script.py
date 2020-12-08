@@ -38,7 +38,7 @@ class ActionModule(ActionBase):
     def run(self, tmp=None, task_vars=None):
         ''' handler for file transfer operations '''
         if task_vars is None:
-            task_vars = dict()
+            task_vars = {}
 
         result = super(ActionModule, self).run(tmp, task_vars)
         del tmp  # tmp no longer has any effect
@@ -110,7 +110,7 @@ class ActionModule(ActionBase):
                 self._fixup_perms2((self._connection._shell.tmpdir, tmp_src), execute=True)
 
                 # add preparation steps to one ssh roundtrip executing the script
-                env_dict = dict()
+                env_dict = {}
                 env_string = self._compute_environment_string(env_dict)
 
                 if executable:

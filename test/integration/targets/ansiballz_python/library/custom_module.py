@@ -9,7 +9,7 @@ from ..module_utils.custom_util import forty_two  # pylint: disable=relative-bey
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict()
+        argument_spec={}
     )
 
     module.exit_json(answer=forty_two())

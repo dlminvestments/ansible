@@ -9,7 +9,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict(),
+        argument_spec={},
     )
     result = {
         'selinux_special_fs': module._selinux_special_fs,

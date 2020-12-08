@@ -687,7 +687,7 @@ class Templar:
         if self._filters is not None:
             return self._filters.copy()
 
-        self._filters = dict()
+        self._filters = {}
 
         for fp in self._filter_loader.all():
             self._filters.update(fp.filters())
@@ -713,7 +713,7 @@ class Templar:
         if self._tests is not None:
             return self._tests.copy()
 
-        self._tests = dict()
+        self._tests = {}
         for fp in self._test_loader.all():
             self._tests.update(fp.tests())
 

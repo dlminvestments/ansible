@@ -184,7 +184,7 @@ def merge_hash(x, y, recursive=True, list_merge='replace'):
 
 def load_extra_vars(loader):
     extra_vars = {}
-    for extra_vars_opt in context.CLIARGS.get('extra_vars', tuple()):
+    for extra_vars_opt in context.CLIARGS.get('extra_vars', ()):
         data = None
         extra_vars_opt = to_text(extra_vars_opt, errors='surrogate_or_strict')
         if extra_vars_opt is None or not extra_vars_opt:

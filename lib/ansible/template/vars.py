@@ -50,7 +50,7 @@ class AnsibleJ2Vars(Mapping):
         self._templar = templar
         self._globals = globals
         self._extras = extras
-        self._locals = dict()
+        self._locals = {}
         if isinstance(locals, dict):
             for key, val in iteritems(locals):
                 if val is not missing:

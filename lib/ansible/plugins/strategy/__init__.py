@@ -210,11 +210,11 @@ class StrategyBase:
 
         # this dictionary is used to keep track of hosts that have
         # outstanding tasks still in queue
-        self._blocked_hosts = dict()
+        self._blocked_hosts = {}
 
         # this dictionary is used to keep track of hosts that have
         # flushed handlers
-        self._flushed_hosts = dict()
+        self._flushed_hosts = {}
 
         self._results = deque()
         self._handler_results = deque()
@@ -227,7 +227,7 @@ class StrategyBase:
 
         # holds the list of active (persistent) connections to be shutdown at
         # play completion
-        self._active_connections = dict()
+        self._active_connections = {}
 
         # Caches for get_host calls, to avoid calling excessively
         # These values should be set at the top of the ``run`` method of each
@@ -656,7 +656,7 @@ class StrategyBase:
 
                     if 'add_host' in result_item:
                         # this task added a new host (add_host module)
-                        new_host_info = result_item.get('add_host', dict())
+                        new_host_info = result_item.get('add_host', {})
                         self._add_host(new_host_info, result_item)
                         post_process_whens(result_item, original_task, handler_templar)
 
@@ -830,7 +830,7 @@ class StrategyBase:
 
             # Set/update the vars for this host
             new_host_vars = new_host.get_vars()
-            new_host_combined_vars = combine_vars(new_host_vars, host_info.get('host_vars', dict()))
+            new_host_combined_vars = combine_vars(new_host_vars, host_info.get('host_vars', {}))
             if new_host_vars != new_host_combined_vars:
                 new_host.vars = new_host_combined_vars
                 changed = True

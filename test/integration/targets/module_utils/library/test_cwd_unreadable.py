@@ -20,7 +20,7 @@ def main():
         cwd = '/'
         os.chdir(cwd)
 
-    module = AnsibleModule(argument_spec=dict())
+    module = AnsibleModule(argument_spec={})
     module.exit_json(before=cwd, after=os.getcwd())
 
 

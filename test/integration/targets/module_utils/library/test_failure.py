@@ -13,4 +13,4 @@ except ImportError:
     results['zebra'] = 'Failed in module as expected but incorrectly did not fail in AnsiballZ construction'
 
 from ansible.module_utils.basic import AnsibleModule
-AnsibleModule(argument_spec=dict()).exit_json(**results)
+AnsibleModule(argument_spec={}).exit_json(**results)

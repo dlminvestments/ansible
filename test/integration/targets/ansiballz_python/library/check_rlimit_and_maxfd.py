@@ -14,7 +14,7 @@ from ansible.module_utils.basic import AnsibleModule
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict()
+        argument_spec={}
     )
 
     rlimit_nofile = resource.getrlimit(resource.RLIMIT_NOFILE)

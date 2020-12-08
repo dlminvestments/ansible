@@ -127,7 +127,7 @@ class InventoryModule(BaseInventoryPlugin):
 
         template_inputs = product(*config['layers'].values())
         for item in template_inputs:
-            template_vars = dict()
+            template_vars = {}
             for i, key in enumerate(config['layers'].keys()):
                 template_vars[key] = item[i]
             host = self.template(config['hosts']['name'], template_vars)

@@ -32,7 +32,7 @@ class ActionModule(ActionBase):
             self.matcher = None
 
         if not self.ignore_files:
-            self.ignore_files = list()
+            self.ignore_files = []
 
         if isinstance(self.ignore_files, string_types):
             self.ignore_files = self.ignore_files.split()
@@ -72,7 +72,7 @@ class ActionModule(ActionBase):
         del tmp  # tmp no longer has any effect
 
         if task_vars is None:
-            task_vars = dict()
+            task_vars = {}
 
         self.show_content = True
         self.included_files = []
@@ -96,7 +96,7 @@ class ActionModule(ActionBase):
         # set internal vars from args
         self._set_args()
 
-        results = dict()
+        results = {}
         if self.source_dir:
             self._set_dir_defaults()
             self._set_root_dir()
@@ -126,7 +126,7 @@ class ActionModule(ActionBase):
                 err_msg = to_native(e)
 
         if self.return_results_as_name:
-            scope = dict()
+            scope = {}
             scope[self.return_results_as_name] = results
             results = scope
 
@@ -215,7 +215,7 @@ class ActionModule(ActionBase):
         Returns:
             Tuple (bool, str, dict)
         """
-        results = dict()
+        results = {}
         failed = False
         err_msg = ''
         if validate_extensions and not self._is_valid_file_ext(filename):
@@ -228,7 +228,7 @@ class ActionModule(ActionBase):
             self.show_content = show_content
             data = self._loader.load(data, file_name=filename, show_content=show_content)
             if not data:
-                data = dict()
+                data = {}
             if not isinstance(data, dict):
                 failed = True
                 err_msg = ('{0} must be stored as a dictionary/hash'.format(to_native(filename)))
@@ -247,7 +247,7 @@ class ActionModule(ActionBase):
         Returns:
             Tuple (bool, str, dict)
         """
-        results = dict()
+        results = {}
         failed = False
         err_msg = ''
         for filename in var_files:

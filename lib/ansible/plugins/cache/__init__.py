@@ -246,7 +246,7 @@ class BaseFileCacheModule(BaseCacheModule):
             self.delete(key)
 
     def copy(self):
-        ret = dict()
+        ret = {}
         for key in self.keys():
             ret[key] = self.get(key)
         return ret
