@@ -798,7 +798,8 @@ class TaskExecutor:
             async_handler.cleanup(force=True)
             return async_result
 
-    def _get_become(self, name):
+    @staticmethod
+    def _get_become(name):
         become = become_loader.get(name)
         if not become:
             raise AnsibleError("Invalid become method specified, could not find matching plugin: '%s'. "
@@ -879,7 +880,8 @@ class TaskExecutor:
 
         return connection
 
-    def _get_persistent_connection_options(self, connection, final_vars, templar):
+    @staticmethod
+    def _get_persistent_connection_options(connection, final_vars, templar):
 
         option_vars = C.config.get_plugin_vars('connection', connection._load_name)
         plugin = connection._sub_plugin

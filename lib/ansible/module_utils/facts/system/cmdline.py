@@ -27,10 +27,12 @@ class CmdLineFactCollector(BaseFactCollector):
     name = 'cmdline'
     _fact_ids = set()
 
-    def _get_proc_cmdline(self):
+    @staticmethod
+    def _get_proc_cmdline():
         return get_file_content('/proc/cmdline')
 
-    def _parse_proc_cmdline(self, data):
+    @staticmethod
+    def _parse_proc_cmdline(data):
         cmdline_dict = {}
         try:
             for piece in shlex.split(data, posix=False):
@@ -44,7 +46,8 @@ class CmdLineFactCollector(BaseFactCollector):
 
         return cmdline_dict
 
-    def _parse_proc_cmdline_facts(self, data):
+    @staticmethod
+    def _parse_proc_cmdline_facts(data):
         cmdline_dict = {}
         try:
             for piece in shlex.split(data, posix=False):

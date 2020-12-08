@@ -154,7 +154,8 @@ class RpmKey(object):
         tmpfile.close()
         return tmpname
 
-    def normalize_keyid(self, keyid):
+    @staticmethod
+    def normalize_keyid(keyid):
         """Ensure a keyid doesn't have a leading 0x, has leading or trailing whitespace, and make sure is uppercase"""
         ret = keyid.strip().upper()
         if ret.startswith('0x'):
@@ -193,7 +194,8 @@ class RpmKey(object):
 
         self.module.fail_json(msg="Unexpected gpg output")
 
-    def is_keyid(self, keystr):
+    @staticmethod
+    def is_keyid(keystr):
         """Verifies if a key, as provided by the user is a keyid"""
         return re.match('(0x)?[0-9a-f]{8}', keystr, flags=re.IGNORECASE)
 

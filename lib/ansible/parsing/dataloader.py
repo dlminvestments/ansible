@@ -194,7 +194,8 @@ class DataLoader:
 
         return unfrackpath(path, follow=False)
 
-    def _is_role(self, path):
+    @staticmethod
+    def _is_role(path):
         ''' imperfect role detection, roles are still valid w/o tasks|meta/main.yml|yaml|etc '''
 
         b_path = to_bytes(path, errors='surrogate_or_strict')
@@ -342,7 +343,8 @@ class DataLoader:
 
         return result
 
-    def _create_content_tempfile(self, content):
+    @staticmethod
+    def _create_content_tempfile(content):
         ''' Create a tempfile containing defined content '''
         fd, content_tempfile = tempfile.mkstemp(dir=C.DEFAULT_LOCAL_TMP)
         f = os.fdopen(fd, 'wb')

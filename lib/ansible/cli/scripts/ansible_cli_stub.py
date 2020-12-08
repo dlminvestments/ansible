@@ -48,10 +48,12 @@ if not _PY_MIN:
 
 class LastResort(object):
     # OUTPUT OF LAST RESORT
-    def display(self, msg, log_only=None):
+    @staticmethod
+    def display(msg, log_only=None):
         print(msg, file=sys.stderr)
 
-    def error(self, msg, wrap_text=None):
+    @staticmethod
+    def error(msg, wrap_text=None):
         print(msg, file=sys.stderr)
 
 

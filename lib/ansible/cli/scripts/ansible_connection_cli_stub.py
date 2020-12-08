@@ -182,7 +182,8 @@ class ConnectionProcess(object):
         display.display(msg, log_only=True)
         raise Exception(msg)
 
-    def handler(self, signum, frame):
+    @staticmethod
+    def handler(signum, frame):
         msg = 'signal handler called with signal %s.' % signum
         display.display(msg, log_only=True)
         raise Exception(msg)

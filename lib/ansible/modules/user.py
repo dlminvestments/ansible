@@ -884,7 +884,8 @@ class User(object):
                 return (rc, out, err)
         return (rc, out, err)
 
-    def group_exists(self, group):
+    @staticmethod
+    def group_exists(group):
         try:
             # Try group as a gid first
             grp.getgrgid(int(group))

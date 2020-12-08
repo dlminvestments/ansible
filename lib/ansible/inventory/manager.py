@@ -194,7 +194,8 @@ class InventoryManager(object):
     def get_host(self, hostname):
         return self._inventory.get_host(hostname)
 
-    def _fetch_inventory_plugins(self):
+    @staticmethod
+    def _fetch_inventory_plugins():
         ''' sets up loaded inventory plugins for usage '''
 
         display.vvvv('setting up inventory plugins')
@@ -338,7 +339,8 @@ class InventoryManager(object):
         self._inventory = InventoryData()
         self.parse_sources(cache=False)
 
-    def _match_list(self, items, pattern_str):
+    @staticmethod
+    def _match_list(items, pattern_str):
         # compile patterns
         try:
             if not pattern_str[0] == '~':
@@ -490,7 +492,8 @@ class InventoryManager(object):
 
         return self._pattern_cache[pattern]
 
-    def _split_subscript(self, pattern):
+    @staticmethod
+    def _split_subscript(pattern):
         """
         Takes a pattern, checks if it has a subscript, and returns the pattern
         without the subscript and a (start,end) tuple representing the given
@@ -523,7 +526,8 @@ class InventoryManager(object):
 
         return (pattern, subscript)
 
-    def _apply_subscript(self, hosts, subscript):
+    @staticmethod
+    def _apply_subscript(hosts, subscript):
         """
         Takes a list of hosts and a (start,end) tuple and returns the subset of
         hosts based on the subscript (which may be None to return all hosts).

@@ -237,7 +237,8 @@ class SourcesList(object):
 
         return '%s.list' % _cleanup_filename(' '.join(parts[:1]))
 
-    def _parse(self, line, raise_if_invalid_or_disabled=False):
+    @staticmethod
+    def _parse(line, raise_if_invalid_or_disabled=False):
         valid = False
         enabled = True
         source = ''
@@ -354,7 +355,8 @@ class SourcesList(object):
                 dumpstruct[filename] = ''.join(lines)
         return dumpstruct
 
-    def _choice(self, new, old):
+    @staticmethod
+    def _choice(new, old):
         if new is None:
             return old
         return new

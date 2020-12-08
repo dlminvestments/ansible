@@ -185,7 +185,8 @@ class ServiceScanService(BaseService):
 
 class SystemctlScanService(BaseService):
 
-    def systemd_enabled(self):
+    @staticmethod
+    def systemd_enabled():
         # Check if init is the systemd command, using comm as cmdline could be symlink
         try:
             f = open('/proc/1/comm', 'r')

@@ -87,7 +87,8 @@ class AnsibleError(Exception):
     def __repr__(self):
         return self.message
 
-    def _get_error_lines_from_file(self, file_name, line_number):
+    @staticmethod
+    def _get_error_lines_from_file(file_name, line_number):
         '''
         Returns the line in the file which corresponds to the reported error
         location, as well as the line preceding it (if the error did not

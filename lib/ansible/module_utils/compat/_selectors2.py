@@ -331,7 +331,8 @@ if hasattr(select, "select"):
             self._writers.discard(key.fd)
             return key
 
-        def _select(self, r, w, timeout=None):
+        @staticmethod
+        def _select(r, w, timeout=None):
             """ Wrapper for select.select because timeout is a positional arg """
             return select.select(r, w, [], timeout)
 

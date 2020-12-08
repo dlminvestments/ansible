@@ -155,7 +155,8 @@ class RoleMixin(object):
                                     found.add((entry, collname, path))
         return found
 
-    def _build_summary(self, role, collection, argspec):
+    @staticmethod
+    def _build_summary(role, collection, argspec):
         """Build a summary dict for a role.
 
         Returns a simplified role arg spec containing only the role entry points and their
@@ -403,7 +404,8 @@ class DocCLI(CLI, RoleMixin):
         # display results
         DocCLI.pager("\n".join(text))
 
-    def _display_available_roles(self, list_json):
+    @staticmethod
+    def _display_available_roles(list_json):
         """Display all roles we can find with a valid argument specification.
 
         Output is: fqcn role name, entry point, short description
@@ -534,7 +536,8 @@ class DocCLI(CLI, RoleMixin):
 
         return results
 
-    def _get_plugins_docs(self, plugin_type, loader):
+    @staticmethod
+    def _get_plugins_docs(plugin_type, loader):
 
         search_paths = DocCLI.print_paths(loader)
 
@@ -1001,7 +1004,8 @@ class DocCLI(CLI, RoleMixin):
             if not suboptions:
                 text.append('')
 
-    def get_role_man_text(self, role, role_json):
+    @staticmethod
+    def get_role_man_text(role, role_json):
         '''Generate text for the supplied role suitable for display.
 
         This is similar to get_man_text(), but roles are different enough that we have

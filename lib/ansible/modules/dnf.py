@@ -365,7 +365,8 @@ class DnfModule(YumDnf):
         # https://github.com/ansible/ansible/issues/57189
         return True
 
-    def _sanitize_dnf_error_msg_install(self, spec, error):
+    @staticmethod
+    def _sanitize_dnf_error_msg_install(spec, error):
         """
         For unhandled dnf.exceptions.Error scenarios, there are certain error
         messages we want to filter in an install scenario. Do that here.
@@ -378,7 +379,8 @@ class DnfModule(YumDnf):
 
         return error
 
-    def _sanitize_dnf_error_msg_remove(self, spec, error):
+    @staticmethod
+    def _sanitize_dnf_error_msg_remove(spec, error):
         """
         For unhandled dnf.exceptions.Error scenarios, there are certain error
         messages we want to ignore in a removal scenario as known benign
@@ -394,7 +396,8 @@ class DnfModule(YumDnf):
         #   ("Is this actually a failure?", "Error Message")
         return (True, error)
 
-    def _package_dict(self, package):
+    @staticmethod
+    def _package_dict(package):
         """Return a dictionary of information for the package."""
         # NOTE: This no longer contains the 'dnfstate' field because it is
         # already known based on the query type.
@@ -481,7 +484,8 @@ class DnfModule(YumDnf):
 
     # Original implementation from yum.rpmUtils.miscutils (GPLv2+)
     #   http://yum.baseurl.org/gitweb?p=yum.git;a=blob;f=rpmUtils/miscutils.py
-    def _compare_evr(self, e1, v1, r1, e2, v2, r2):
+    @staticmethod
+    def _compare_evr(e1, v1, r1, e2, v2, r2):
         # return 1: a is newer than b
         # 0: a and b are the same version
         # -1: b is newer than a
@@ -617,7 +621,8 @@ class DnfModule(YumDnf):
         # Default in dnf (and module default) is True
         conf.install_weak_deps = self.install_weak_deps
 
-    def _specify_repositories(self, base, disablerepo, enablerepo):
+    @staticmethod
+    def _specify_repositories(base, disablerepo, enablerepo):
         """Enable and disable repositories matching the provided patterns."""
         base.read_all_repos()
         repos = base.repos

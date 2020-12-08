@@ -122,7 +122,8 @@ class FreeBSDHardware(Hardware):
         return memory_facts
 
     @timeout()
-    def get_mount_facts(self):
+    @staticmethod
+    def get_mount_facts():
         mount_facts = {}
 
         mount_facts['mounts'] = []
@@ -142,7 +143,8 @@ class FreeBSDHardware(Hardware):
 
         return mount_facts
 
-    def get_device_facts(self):
+    @staticmethod
+    def get_device_facts():
         device_facts = {}
 
         sysdir = '/dev'

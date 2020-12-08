@@ -103,7 +103,8 @@ class BaseFactCollector:
             facts_dict = self._transform_dict_keys(facts_dict)
         return facts_dict
 
-    def collect(self, module=None, collected_facts=None):
+    @staticmethod
+    def collect(module=None, collected_facts=None):
         '''do the fact collection
 
         'collected_facts' is a object (a dict, likely) that holds all previously

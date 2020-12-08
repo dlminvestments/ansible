@@ -882,7 +882,8 @@ class AnsibleModule(object):
     # will get the selevel as part of the context returned
     # by selinux.lgetfilecon().
 
-    def selinux_mls_enabled(self):
+    @staticmethod
+    def selinux_mls_enabled():
         if not HAVE_SELINUX:
             return False
         if selinux.is_selinux_mls_enabled() == 1:
@@ -944,7 +945,8 @@ class AnsibleModule(object):
         context = ret[1].split(':', 3)
         return context
 
-    def user_and_group(self, path, expand=True):
+    @staticmethod
+    def user_and_group(path, expand=True):
         b_path = to_bytes(path, errors='surrogate_or_strict')
         if expand:
             b_path = os.path.expanduser(os.path.expandvars(b_path))
@@ -953,7 +955,8 @@ class AnsibleModule(object):
         gid = st.st_gid
         return (uid, gid)
 
-    def find_mount_point(self, path):
+    @staticmethod
+    def find_mount_point(path):
         path_is_bytes = False
         if isinstance(path, binary_type):
             path_is_bytes = True
@@ -1717,7 +1720,8 @@ class AnsibleModule(object):
                     msg += " found in %s" % " -> ".join(self._options_context)
                 self.fail_json(msg=msg)
 
-    def safe_eval(self, value, locals=None, include_exceptions=False):
+    @staticmethod
+    def safe_eval(value, locals=None, include_exceptions=False):
         return safe_eval(value, locals, include_exceptions)
 
     def _check_type_str(self, value, param=None, prefix=''):
@@ -1752,34 +1756,44 @@ class AnsibleModule(object):
                 self.warn(to_native(msg))
                 return to_native(value, errors='surrogate_or_strict')
 
-    def _check_type_list(self, value):
+    @staticmethod
+    def _check_type_list(value):
         return check_type_list(value)
 
-    def _check_type_dict(self, value):
+    @staticmethod
+    def _check_type_dict(value):
         return check_type_dict(value)
 
-    def _check_type_bool(self, value):
+    @staticmethod
+    def _check_type_bool(value):
         return check_type_bool(value)
 
-    def _check_type_int(self, value):
+    @staticmethod
+    def _check_type_int(value):
         return check_type_int(value)
 
-    def _check_type_float(self, value):
+    @staticmethod
+    def _check_type_float(value):
         return check_type_float(value)
 
-    def _check_type_path(self, value):
+    @staticmethod
+    def _check_type_path(value):
         return check_type_path(value)
 
-    def _check_type_jsonarg(self, value):
+    @staticmethod
+    def _check_type_jsonarg(value):
         return check_type_jsonarg(value)
 
-    def _check_type_raw(self, value):
+    @staticmethod
+    def _check_type_raw(value):
         return check_type_raw(value)
 
-    def _check_type_bytes(self, value):
+    @staticmethod
+    def _check_type_bytes(value):
         return check_type_bytes(value)
 
-    def _check_type_bits(self, value):
+    @staticmethod
+    def _check_type_bits(value):
         return check_type_bits(value)
 
     def _handle_options(self, argument_spec=None, params=None, prefix=''):
@@ -2144,7 +2158,8 @@ class AnsibleModule(object):
         except UnicodeError as e:
             self.fail_json(msg=to_text(e))
 
-    def from_json(self, data):
+    @staticmethod
+    def from_json(data):
         return json.loads(data)
 
     def add_cleanup_file(self, path):
@@ -2295,7 +2310,8 @@ class AnsibleModule(object):
 
         return backupdest
 
-    def cleanup(self, tmpfile):
+    @staticmethod
+    def cleanup(tmpfile):
         if os.path.exists(tmpfile):
             try:
                 os.unlink(tmpfile)
@@ -2521,7 +2537,8 @@ class AnsibleModule(object):
 
         return self._clean
 
-    def _restore_signal_handlers(self):
+    @staticmethod
+    def _restore_signal_handlers():
         # Reset SIGPIPE to SIG_DFL, otherwise in Python2.7 it gets ignored in subprocesses.
         if PY2 and sys.platform != 'win32':
             signal.signal(signal.SIGPIPE, signal.SIG_DFL)
@@ -2813,19 +2830,22 @@ class AnsibleModule(object):
 
         return (rc, stdout, stderr)
 
-    def append_to_file(self, filename, str):
+    @staticmethod
+    def append_to_file(filename, str):
         filename = os.path.expandvars(os.path.expanduser(filename))
         fh = open(filename, 'a')
         fh.write(str)
         fh.close()
 
-    def bytes_to_human(self, size):
+    @staticmethod
+    def bytes_to_human(size):
         return bytes_to_human(size)
 
     # for backwards compatibility
     pretty_bytes = bytes_to_human
 
-    def human_to_bytes(self, number, isbits=False):
+    @staticmethod
+    def human_to_bytes(number, isbits=False):
         return human_to_bytes(number, isbits)
 
     #

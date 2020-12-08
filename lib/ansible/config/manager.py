@@ -294,7 +294,8 @@ class ConfigManager(object):
         # update constants
         self.update_config_data()
 
-    def _read_config_yaml_file(self, yml_file):
+    @staticmethod
+    def _read_config_yaml_file(yml_file):
         # TODO: handle relative paths as relative to the directory containing the current playbook instead of CWD
         # Currently this is only used with absolute paths to the `ansible/config` directory
         yml_file = to_bytes(yml_file)

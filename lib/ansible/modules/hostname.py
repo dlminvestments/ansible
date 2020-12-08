@@ -217,7 +217,8 @@ class GenericStrategy(object):
         if rc != 0:
             self.module.fail_json(msg="Command failed rc=%d, out=%s, err=%s" % (rc, out, err))
 
-    def get_permanent_hostname(self):
+    @staticmethod
+    def get_permanent_hostname():
         return 'UNKNOWN'
 
     def set_permanent_hostname(self, name):
@@ -629,7 +630,8 @@ class DarwinStrategy(GenericStrategy):
         self.name_types = ('HostName', 'ComputerName', 'LocalHostName')
         self.scrubbed_name = self._scrub_hostname(self.module.params['name'])
 
-    def _make_translation(self, replace_chars, replacement_chars, delete_chars):
+    @staticmethod
+    def _make_translation(replace_chars, replacement_chars, delete_chars):
         if PY3:
             return str.maketrans(replace_chars, replacement_chars, delete_chars)
 

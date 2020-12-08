@@ -313,7 +313,8 @@ class PlaybookExecutor:
 
         return serialized_batches
 
-    def _generate_retry_inventory(self, retry_path, replay_hosts):
+    @staticmethod
+    def _generate_retry_inventory(retry_path, replay_hosts):
         '''
         Called when a playbook run fails. It generates an inventory which allows
         re-running on ONLY the failed hosts.  This may duplicate some variable

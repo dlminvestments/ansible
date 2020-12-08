@@ -339,7 +339,8 @@ class CronTab(object):
     def update_job(self, name, job):
         return self._update_job(name, job, self.do_add_job)
 
-    def do_add_job(self, lines, comment, job):
+    @staticmethod
+    def do_add_job(lines, comment, job):
         lines.append(comment)
 
         lines.append("%s" % (job))
@@ -347,7 +348,8 @@ class CronTab(object):
     def remove_job(self, name):
         return self._update_job(name, "", self.do_remove_job)
 
-    def do_remove_job(self, lines, comment, job):
+    @staticmethod
+    def do_remove_job(lines, comment, job):
         return None
 
     def add_env(self, decl, insertafter=None, insertbefore=None):
@@ -373,13 +375,15 @@ class CronTab(object):
     def update_env(self, name, decl):
         return self._update_env(name, decl, self.do_add_env)
 
-    def do_add_env(self, lines, decl):
+    @staticmethod
+    def do_add_env(lines, decl):
         lines.append(decl)
 
     def remove_env(self, name):
         return self._update_env(name, '', self.do_remove_env)
 
-    def do_remove_env(self, lines, decl):
+    @staticmethod
+    def do_remove_env(lines, decl):
         return None
 
     def remove_job_file(self):

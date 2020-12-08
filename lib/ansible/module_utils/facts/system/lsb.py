@@ -29,7 +29,8 @@ class LSBFactCollector(BaseFactCollector):
     _fact_ids = set()
     STRIP_QUOTES = r'\'\"\\'
 
-    def _lsb_release_bin(self, lsb_path, module):
+    @staticmethod
+    def _lsb_release_bin(lsb_path, module):
         lsb_facts = {}
 
         if not lsb_path:
@@ -57,7 +58,8 @@ class LSBFactCollector(BaseFactCollector):
 
         return lsb_facts
 
-    def _lsb_release_file(self, etc_lsb_release_location):
+    @staticmethod
+    def _lsb_release_file(etc_lsb_release_location):
         lsb_facts = {}
 
         if not os.path.exists(etc_lsb_release_location):

@@ -60,7 +60,8 @@ class PkgMgrFactCollector(BaseFactCollector):
     _platform = 'Generic'
     required_facts = set(['distribution'])
 
-    def _check_rh_versions(self, pkg_mgr_name, collected_facts):
+    @staticmethod
+    def _check_rh_versions(pkg_mgr_name, collected_facts):
         if collected_facts['ansible_distribution'] == 'Fedora':
             if os.path.exists('/run/ostree-booted'):
                 return "atomic_container"
@@ -94,7 +95,8 @@ class PkgMgrFactCollector(BaseFactCollector):
                 pkg_mgr_name = 'dnf'
         return pkg_mgr_name
 
-    def _check_apt_flavor(self, pkg_mgr_name):
+    @staticmethod
+    def _check_apt_flavor(pkg_mgr_name):
         # Check if '/usr/bin/apt' is APT-RPM or an ordinary (dpkg-based) APT.
         # There's rpm package on Debian, so checking if /usr/bin/rpm exists
         # is not enough. Instead ask RPM if /usr/bin/apt-get belongs to some

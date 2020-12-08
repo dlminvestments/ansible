@@ -33,11 +33,13 @@ class FactNamespace:
     def __init__(self, namespace_name):
         self.namespace_name = namespace_name
 
-    def transform(self, name):
+    @staticmethod
+    def transform(name):
         '''Take a text name, and transforms it as needed (add a namespace prefix, etc)'''
         return name
 
-    def _underscore(self, name):
+    @staticmethod
+    def _underscore(name):
         return name.replace('-', '_')
 
 

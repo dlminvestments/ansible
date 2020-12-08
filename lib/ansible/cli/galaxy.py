@@ -525,7 +525,8 @@ class GalaxyCLI(CLI):
 
         return self._api
 
-    def _get_default_collection_path(self):
+    @staticmethod
+    def _get_default_collection_path():
         return C.COLLECTIONS_PATHS[0]
 
     def _parse_requirements_file(self, requirements_file, allow_old_format=True):
@@ -773,7 +774,8 @@ class GalaxyCLI(CLI):
         # To satisfy doc build
         pass
 
-    def execute_build(self):
+    @staticmethod
+    def execute_build():
         """
         Build an Ansible Galaxy collection artifact that can be stored in a central repository like Ansible Galaxy.
         By default, this command builds from the current working directory. You can optionally pass in the
@@ -1281,7 +1283,8 @@ class GalaxyCLI(CLI):
 
         return 0
 
-    def execute_list_collection(self):
+    @staticmethod
+    def execute_list_collection():
         """
         List all collections installed on the local system
         """

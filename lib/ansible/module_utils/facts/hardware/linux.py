@@ -491,7 +491,8 @@ class LinuxHardware(Hardware):
 
         return bind_mounts
 
-    def _mtab_entries(self):
+    @staticmethod
+    def _mtab_entries():
         mtab_file = '/etc/mtab'
         if not os.path.exists(mtab_file):
             mtab_file = '/proc/mounts'
@@ -592,7 +593,8 @@ class LinuxHardware(Hardware):
 
         return {'mounts': mounts}
 
-    def get_device_links(self, link_dir):
+    @staticmethod
+    def get_device_links(link_dir):
         if not os.path.exists(link_dir):
             return {}
         try:
@@ -607,7 +609,8 @@ class LinuxHardware(Hardware):
         except OSError:
             return {}
 
-    def get_all_device_owners(self):
+    @staticmethod
+    def get_all_device_owners():
         try:
             retval = collections.defaultdict(set)
             for path in glob.glob('/sys/block/*/slaves/*'):
@@ -627,7 +630,8 @@ class LinuxHardware(Hardware):
             'masters': self.get_all_device_owners(),
         }
 
-    def get_holders(self, block_dev_dict, sysdir):
+    @staticmethod
+    def get_holders(block_dev_dict, sysdir):
         block_dev_dict['holders'] = []
         if os.path.isdir(sysdir + "/holders"):
             for folder in os.listdir(sysdir + "/holders"):
@@ -780,7 +784,8 @@ class LinuxHardware(Hardware):
 
         return device_facts
 
-    def get_uptime_facts(self):
+    @staticmethod
+    def get_uptime_facts():
         uptime_facts = {}
         uptime_file_content = get_file_content('/proc/uptime')
         if uptime_file_content:

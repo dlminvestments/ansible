@@ -64,7 +64,8 @@ class NetBSDHardware(Hardware):
 
         return hardware_facts
 
-    def get_cpu_facts(self):
+    @staticmethod
+    def get_cpu_facts():
         cpu_facts = {}
 
         i = 0
@@ -98,7 +99,8 @@ class NetBSDHardware(Hardware):
 
         return cpu_facts
 
-    def get_memory_facts(self):
+    @staticmethod
+    def get_memory_facts():
         memory_facts = {}
         if not os.access("/proc/meminfo", os.R_OK):
             return memory_facts
@@ -112,7 +114,8 @@ class NetBSDHardware(Hardware):
         return memory_facts
 
     @timeout()
-    def get_mount_facts(self):
+    @staticmethod
+    def get_mount_facts():
         mount_facts = {}
 
         mount_facts['mounts'] = []

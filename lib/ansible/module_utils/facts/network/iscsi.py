@@ -106,7 +106,8 @@ class IscsiInitiatorNetworkCollector(NetworkCollector):
 
         return iscsi_facts
 
-    def findstr(self, text, match):
+    @staticmethod
+    def findstr(text, match):
         for line in text.splitlines():
             if match in line:
                 found = line
