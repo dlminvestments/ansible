@@ -115,5 +115,3 @@ See `COPYING <COPYING>`_ to see the full text.
 .. |CII Best Practices| image:: https://bestpractices.coreinfrastructure.org/projects/2372/badge
    :target: https://bestpractices.coreinfrastructure.org/projects/2372
    :alt: Ansible CII Best Practices certification
-
-<a href="https://codebeat.co/projects/github-com-dlminvestments-ansible-devel"><img alt="codebeat badge" src="https://codebeat.co/badges/c5c4c146-f799-4c41-892a-656985078c2f" /></a>
