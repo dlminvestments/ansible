@@ -1,5 +1,5 @@
 cryptography
-jinja2==2.11.2
+jinja2==2.11.3
 mock
 pytest
 pytest-mock
